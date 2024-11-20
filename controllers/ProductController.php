@@ -16,7 +16,7 @@ class ProductController extends BaseController
 
         $results = $model->all("");
 
-        $this->view->render('products', 'main', $results);
+        $this->view->render('products', 'list', $results);
     }
 
     public function update()
@@ -27,7 +27,7 @@ class ProductController extends BaseController
 
         $model->one("where id = $model->id");
 
-        $this->view->render('updateProduct', 'main', $model);
+        $this->view->render('updateProduct', 'list', $model);
     }
 
     public function processUpdate()
@@ -40,7 +40,7 @@ class ProductController extends BaseController
 
         if ($model->errors) {
             Application::$app->session->set('errorNotification', 'Neuspesna promena!');
-            $this->view->render('updateProduct', 'main', $model);
+            $this->view->render('updateProduct', 'list', $model);
             exit;
         }
 

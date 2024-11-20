@@ -14,7 +14,7 @@ class AuthController extends BaseController
 {
     public function registration()
     {
-        $this->view->render('registration', 'auth', new RegistrationModel());
+        $this->view->render('registration', 'main', new RegistrationModel());
     }
 
     public function processRegistration()
@@ -27,7 +27,7 @@ class AuthController extends BaseController
 
         if ($model->errors) {
             Application::$app->session->set('errorNotification', 'Neuspesna registracija!');
-            $this->view->render('registration', 'auth', $model);
+            $this->view->render('registration', 'main', $model);
             exit;
         }
 
@@ -59,7 +59,7 @@ class AuthController extends BaseController
             header("location:" . "/");
         }
 
-        $this->view->render('login', 'auth', new LoginModel());
+        $this->view->render('login', 'main', new LoginModel());
     }
 
     public function processLogin()
@@ -71,7 +71,7 @@ class AuthController extends BaseController
         $model->validate();
 
         if ($model->errors) {
-            $this->view->render('login', 'auth', $model);
+            $this->view->render('login', 'main', $model);
             exit;
         }
 
@@ -93,7 +93,7 @@ class AuthController extends BaseController
 
         Application::$app->session->set('errorNotification', 'Neuspesan login!');
 
-        $this->view->render('login', 'auth', $model);
+        $this->view->render('login', 'main', $model);
     }
 
     public function processLogout()
@@ -104,7 +104,7 @@ class AuthController extends BaseController
 
     public function accessDenied()
     {
-        $this->view->render('accessDenied', 'auth', null);
+        $this->view->render('accessDenied', 'main', null);
     }
 
     public function accessRole(): array
