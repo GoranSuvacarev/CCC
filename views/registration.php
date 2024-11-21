@@ -27,11 +27,11 @@ use app\models\RegistrationModel;
                 ?>
             </div>
             <div class="mb-3">
-                <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password" value="<?php echo $params->password ?>">
+                <input type="password" name="passwordHash" class="form-control form-control-lg" placeholder="Password" aria-label="Password" value="<?php echo $params->passwordHash ?>">
                 <?php
                 if ($params != null && $params->errors != null) {
                     foreach ($params->errors as $attribute => $error) {
-                        if ($attribute == 'password') {
+                        if ($attribute == 'passwordHash') {
                             echo "<span class='text-danger'>$error[0]</span>";
                         }
                     }

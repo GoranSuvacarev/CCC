@@ -8,7 +8,7 @@ class DbConnection
 {
     public function connect()
     {
-        $mysqli = new mysqli("localhost", "root", "", "vbis");
+        $mysqli = new mysqli("localhost", "root", "", "ccc");
 
         return $mysqli;
     }

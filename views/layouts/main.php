@@ -51,6 +51,11 @@ use app\core\Application;
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="navbar-nav">
+                            <li class="nav-item me-0">
+                                <a class="nav-link me-2" href="/products">
+                                    SSD
+                                </a>
+                            </li>
                             <?php
                             if (Application::$app->session->get('user')) {
                                 echo '<li class="nav-item me-0">';

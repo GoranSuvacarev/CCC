@@ -38,13 +38,13 @@ use app\models\UserModel;
 
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Description</label>
-                        <input class="form-control" type="text" name="description" value="<?php echo $params->description ?>"
+                        <label for="example-text-input" class="form-control-label">Price</label>
+                        <input class="form-control" type="text" name="price" value="<?php echo $params->price ?>"
                                onfocus="focused(this)" onfocusout="defocused(this)">
                         <?php
                         if ($params != null && $params->errors != null) {
                             foreach ($params->errors as $attribute => $error) {
-                                if ($attribute == 'description') {
+                                if ($attribute == 'price') {
                                     echo "<span class='text-danger'>$error[0]</span>";
                                 }
                             }

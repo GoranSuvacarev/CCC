@@ -14,7 +14,7 @@ class ProductController extends BaseController
     {
         $model = new ProductModel();
 
-        $results = $model->all("");
+        $results = $model->all("where id_category = 3");
 
         $this->view->render('products', 'list', $results);
     }
@@ -53,6 +53,6 @@ class ProductController extends BaseController
 
     public function accessRole(): array
     {
-        return ['Korisnik', 'Administrator'];
+        return [];
     }
 }

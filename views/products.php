@@ -23,7 +23,7 @@
                     echo "</div>";
                     echo "<div class='d-flex flex-column justify-content-center'>";
                     echo "<h6 class='mb-0 text-sm'>$param[name]</h6>";
-                    echo "<p class='text-xs text-secondary mb-0'>$param[description]</p>";
+                    echo "<p class='text-xs text-secondary mb-0'>$param[price]</p>";
                     echo "</div>";
                     echo "</div>";
                     echo " </td>";

@@ -31,7 +31,7 @@ class AuthController extends BaseController
             exit;
         }
 
-        $model->password = password_hash($model->password, PASSWORD_DEFAULT);
+        $model->passwordHash = password_hash($model->passwordHash, PASSWORD_DEFAULT);
 
         $model->insert();
 
@@ -75,11 +75,11 @@ class AuthController extends BaseController
             exit;
         }
 
-        $loginPassword = $model->password;
+        $loginPassword = $model->passwordHash;
 
         $model->one("where email = '$model->email'");
 
-        $verifyResult = password_verify($loginPassword, $model->password);
+        $verifyResult = password_verify($loginPassword, $model->passwordHash);
 
         if ($verifyResult) {
             $sessionUserModel = new SessionUserModel();
@@ -89,7 +89,7 @@ class AuthController extends BaseController
             header("location:" . "/");
         }
 
-        $model->password = $loginPassword;
+        $model->passwordHash = $loginPassword;
 
         Application::$app->session->set('errorNotification', 'Neuspesan login!');
 
