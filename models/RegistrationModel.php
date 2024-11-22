@@ -9,6 +9,7 @@ class RegistrationModel extends BaseModel
     public int $id;
     public string $email = '';
     public string $passwordHash = '';
+    public int $id_roles = 2;
 
     public function tableName(): string
     {
@@ -22,7 +23,7 @@ class RegistrationModel extends BaseModel
 
     public function editColumns()
     {
-        return ['email', 'passwordHash'];
+        return ['email', 'passwordHash', 'id_roles'];
     }
 
     public function validationRules(): array

@@ -6,9 +6,7 @@ use app\core\Application;
 use app\core\BaseController;
 use app\models\RegistrationModel;
 use app\models\LoginModel;
-use app\models\RoleModel;
 use app\models\SessionUserModel;
-use app\models\UserRoleModel;
 
 class AuthController extends BaseController
 {
@@ -34,19 +32,6 @@ class AuthController extends BaseController
         $model->passwordHash = password_hash($model->passwordHash, PASSWORD_DEFAULT);
 
         $model->insert();
-
-        $model->one("where email = '$model->email'");
-
-        $roleModel = new RoleModel();
-
-        $roleModel->one("where name = 'Korisnik'");
-
-        $userRoleModel = new UserRoleModel();
-
-        $userRoleModel->id_user = $model->id;
-        $userRoleModel->id_role = $roleModel->id;
-
-        $userRoleModel->insert();
 
         Application::$app->session->set('successNotification', 'Uspesna registracija!');
 

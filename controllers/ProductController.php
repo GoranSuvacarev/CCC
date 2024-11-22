@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\BaseController;
 use app\models\ProductModel;
-use app\models\UserModel;
 
 class ProductController extends BaseController
 {
