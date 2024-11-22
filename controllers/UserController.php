@@ -89,6 +89,6 @@ class UserController extends BaseController
 
     public function accessRole(): array
     {
-        return ['Administrator'];
+        return ['Admin'];
     }
 }
