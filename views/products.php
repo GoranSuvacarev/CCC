@@ -19,7 +19,7 @@
                     echo "<td>";
                     echo "<div class='d-flex px-2 py-1'>";
                     echo "<div>";
-                    echo "<img src='../assets/img/team-2.jpg' class='avatar avatar-sm me-3' alt='user1'>";
+                    echo "<img src='../assets/img/product_img/ssd_default.png' class='avatar avatar-sm me-3' alt='user1'>";
                     echo "</div>";
                     echo "<div class='d-flex flex-column justify-content-center'>";
                     echo "<h6 class='mb-0 text-sm'>$param[name]</h6>";
