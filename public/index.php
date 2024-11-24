@@ -6,6 +6,7 @@ use app\controllers\AuthController;
 use app\controllers\HomeController;
 use app\controllers\ProductController;
 use app\controllers\UserController;
+use app\controllers\ReportController;
 use app\core\Application;
 
 $app = new Application();
@@ -32,5 +33,10 @@ $app->router->get("/login", [AuthController::class, 'login']);
 $app->router->get("/processLogout", [AuthController::class, 'processLogout']);
 $app->router->get("/accessDenied", [AuthController::class, 'accessDenied']);
 $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
+
+//Reports
+$app->router->get("/myReports", [ReportController::class, 'myReports']);
+//$app->router->get("/getNumberOfReservationsPerMonth", [ReportController::class, 'getNumberOfReservationsPerMonth']);
+//$app->router->get("/getPricePerMonth", [ReportController::class, 'getPricePerMonth']);
 
 $app->run();

@@ -28,6 +28,7 @@ use app\core\Application;
     <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="../assets/js/plugins/toastr/toastr.min.js"></script>
     <script src="../assets/js/plugins/toastr/toastr-options.js"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
 </head>
 
 <body class="">
@@ -51,6 +52,11 @@ use app\core\Application;
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navigation">
                         <ul class="navbar-nav">
+                            <li class="nav-item me-0">
+                                <a class="nav-link me-2" href="/myReports">
+                                    Graph
+                                </a>
+                            </li>
                             <li class="nav-item me-0">
                                 <a class="nav-link me-2" href="/products">
                                     SSD
