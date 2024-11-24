@@ -7,3 +7,24 @@
         </div>
     </div>
 </section>
+<section style="height: 672px;">
+    <section class="position-relative py-4 py-xl-5">
+        <div class="container position-relative">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                    <div class="card mb-5">
+                        <div class="card-body p-sm-5" style="width: 419px;">
+                            <h2 class="text-center mb-4" style="font-size: 32px;">Suggest a product</h2>
+                            <form method="post"><span style="font-size: 20px;">Product name</span>
+                                <div class="mb-3"><input class="form-control" type="text" id="name-2" name="Product name" placeholder="Write the name here"></div><span style="font-size: 20px;">Sources (Optional)</span>
+                                <div class="mb-3"></div>
+                                <div class="mb-3"><textarea class="form-control" id="message-2" name="message" rows="6" placeholder="Where can we find more inforamtion" style="max-height: 200px;"></textarea></div>
+                                <div><button class="btn btn-primary d-block w-100" type="submit">Send </button></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
