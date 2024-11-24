@@ -7,7 +7,6 @@ use app\core\BaseModel;
 class SessionUserModel extends BaseModel
 {
     public int $id;
-    public int $id_user;
     public string $email;
     public string $role;
 
@@ -26,6 +25,10 @@ where u.email = '$this->email'";
         }
 
         return $resultArray;
+    }
+
+    public function getSessionUserID(): int{
+        return $this->id;
     }
 
     public function tableName()

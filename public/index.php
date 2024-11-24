@@ -5,6 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use app\controllers\AuthController;
 use app\controllers\HomeController;
 use app\controllers\ProductController;
+use app\controllers\SuggestionController;
 use app\controllers\UserController;
 use app\controllers\ReportController;
 use app\core\Application;
@@ -22,7 +23,9 @@ $app->router->post("/processUpdateUser", [UserController::class, 'processUpdateU
 $app->router->post("/processCreateUser", [UserController::class, 'processCreate']);
 
 //Products
-$app->router->get("/products", [ProductController::class, 'products']);
+$app->router->get("/ssds", [ProductController::class, 'ssds']);
+$app->router->get("/gpus", [ProductController::class, 'gpus']);
+$app->router->get("/cpus", [ProductController::class, 'cpus']);
 $app->router->get("/updateProduct", [ProductController::class, 'update']);
 $app->router->post("/processUpdateProduct", [ProductController::class, 'processUpdate']);
 
@@ -38,5 +41,8 @@ $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
 $app->router->get("/myReports", [ReportController::class, 'myReports']);
 //$app->router->get("/getNumberOfReservationsPerMonth", [ReportController::class, 'getNumberOfReservationsPerMonth']);
 //$app->router->get("/getPricePerMonth", [ReportController::class, 'getPricePerMonth']);
+
+//Suggestions
+$app->router->post("/addSuggestion", [SuggestionController::class, 'addSuggestion']);
 
 $app->run();

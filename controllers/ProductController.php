@@ -9,13 +9,35 @@ use app\models\ProductModel;
 class ProductController extends BaseController
 {
 
-    public function products()
+
+    public function ssds()
     {
         $model = new ProductModel();
 
         $results = $model->all("where id_category = 3");
 
-        $this->view->render('products', 'list', $results);
+        $this->view->render('ssds', 'list', $results);
+    }
+
+    public function gpus()
+    {
+        $model = new ProductModel();
+
+        $results = $model->all("where id_category = 1");
+
+        ;
+        exit;
+
+        $this->view->render('gpus', 'list', $results);
+    }
+
+    public function cpus()
+    {
+        $model = new ProductModel();
+
+        $results = $model->all("where id_category = 2");
+
+        $this->view->render('cpus', 'list', $results);
     }
 
     public function update()

@@ -15,17 +15,30 @@ use app\core\Application;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700&amp;display=swap">
     <link rel="stylesheet" href="assets/css/breadcrumb.css">
     <link rel="stylesheet" href="assets/css/Navbar-Centered-Links-icons.css">
+    <link rel="stylesheet" href="../assets/js/plugins/toastr/toastr.min.css">
+    <script src="../assets/js/plugins/toastr/toastr.min.js"></script>
+    <script src="../assets/js/plugins/toastr/toastr-options.js"></script>
 </head>
 
 <body>
 <nav class="navbar navbar-expand-md sticky-top bg-body py-3">
-    <div class="container"><a class="navbar-brand d-flex align-items-center" href="#"><span style="font-weight: bold;font-size: 25px;">CCC</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span style="font-weight: bold;font-size: 25px;">CCC</span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-3"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navcol-3">
             <ul class="navbar-nav mx-auto">
-                <li class="nav-item"><a class="nav-link active" href="#" style="font-size: 18px;color: var(--bs-emphasis-color);">Graphics cards</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" style="font-size: 18px;color: var(--bs-emphasis-color);">Processors</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" style="font-size: 18px;color: var(--bs-emphasis-color);">Storage</a></li>
-            </ul><button class="btn btn-primary" type="button">Sign IN</button>
+                <li class="nav-item"><a class="nav-link active" href="/gpus" style="font-size: 18px;color: var(--bs-emphasis-color);">Graphics cards</a></li>
+                <li class="nav-item"><a class="nav-link" href="/cpus" style="font-size: 18px;color: var(--bs-emphasis-color);">Processors</a></li>
+                <li class="nav-item"><a class="nav-link" href="/ssds" style="font-size: 18px;color: var(--bs-emphasis-color);">Storage</a></li>
+            </ul>
+
+
+            <?php
+            if (Application::$app->session->get('user')) {
+                echo'<a href="/processLogout"><button class="btn btn-primary" type="button">Log out</button></a>';
+            } else {
+                echo'<a href="/login"><button class="btn btn-primary" type="button">Sign IN</button></a>';
+            }
+            ?>
+
         </div>
     </div>
 </nav>
@@ -44,5 +57,10 @@ use app\core\Application;
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bs-init.js"></script>
 </body>
+
+<?php
+Application::$app->session->showSuccessNotification();
+Application::$app->session->showErrorNotification();
+?>
 
 </html>
