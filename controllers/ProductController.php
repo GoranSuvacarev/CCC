@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\core\Application;
 use app\core\BaseController;
 use app\models\ProductModel;
-use app\models\UserModel;
 
 class ProductController extends BaseController
 {
@@ -14,9 +13,9 @@ class ProductController extends BaseController
     {
         $model = new ProductModel();
 
-        $results = $model->all("");
+        $results = $model->all("where id_category = 3");
 
-        $this->view->render('products', 'main', $results);
+        $this->view->render('products', 'list', $results);
     }
 
     public function update()
@@ -27,7 +26,7 @@ class ProductController extends BaseController
 
         $model->one("where id = $model->id");
 
-        $this->view->render('updateProduct', 'main', $model);
+        $this->view->render('updateProduct', 'list', $model);
     }
 
     public function processUpdate()
@@ -40,7 +39,7 @@ class ProductController extends BaseController
 
         if ($model->errors) {
             Application::$app->session->set('errorNotification', 'Neuspesna promena!');
-            $this->view->render('updateProduct', 'main', $model);
+            $this->view->render('updateProduct', 'list', $model);
             exit;
         }
 
@@ -53,6 +52,6 @@ class ProductController extends BaseController
 
     public function accessRole(): array
     {
-        return ['Korisnik', 'Administrator'];
+        return [];
     }
 }

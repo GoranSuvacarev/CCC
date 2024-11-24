@@ -5,8 +5,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use app\controllers\AuthController;
 use app\controllers\HomeController;
 use app\controllers\ProductController;
-use app\controllers\ServiceController;
 use app\controllers\UserController;
+use app\controllers\ReportController;
 use app\core\Application;
 
 $app = new Application();
@@ -34,11 +34,9 @@ $app->router->get("/processLogout", [AuthController::class, 'processLogout']);
 $app->router->get("/accessDenied", [AuthController::class, 'accessDenied']);
 $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
 
-//Services
-$app->router->get("/services", [ServiceController::class, 'list']);
-$app->router->get("/updateService", [ServiceController::class, 'update']);
-$app->router->get("/createService", [ServiceController::class, 'create']);
-$app->router->post("/processUpdateService", [ServiceController::class, 'processUpdate']);
-$app->router->post("/processCreateService", [ServiceController::class, 'processCreate']);
+//Reports
+$app->router->get("/myReports", [ReportController::class, 'myReports']);
+//$app->router->get("/getNumberOfReservationsPerMonth", [ReportController::class, 'getNumberOfReservationsPerMonth']);
+//$app->router->get("/getPricePerMonth", [ReportController::class, 'getPricePerMonth']);
 
 $app->run();

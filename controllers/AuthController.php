@@ -6,15 +6,13 @@ use app\core\Application;
 use app\core\BaseController;
 use app\models\RegistrationModel;
 use app\models\LoginModel;
-use app\models\RoleModel;
 use app\models\SessionUserModel;
-use app\models\UserRoleModel;
 
 class AuthController extends BaseController
 {
     public function registration()
     {
-        $this->view->render('registration', 'auth', new RegistrationModel());
+        $this->view->render('registration', 'main', new RegistrationModel());
     }
 
     public function processRegistration()
@@ -27,26 +25,13 @@ class AuthController extends BaseController
 
         if ($model->errors) {
             Application::$app->session->set('errorNotification', 'Neuspesna registracija!');
-            $this->view->render('registration', 'auth', $model);
+            $this->view->render('registration', 'main', $model);
             exit;
         }
 
-        $model->password = password_hash($model->password, PASSWORD_DEFAULT);
+        $model->passwordHash = password_hash($model->passwordHash, PASSWORD_DEFAULT);
 
         $model->insert();
-
-        $model->one("where email = '$model->email'");
-
-        $roleModel = new RoleModel();
-
-        $roleModel->one("where name = 'Korisnik'");
-
-        $userRoleModel = new UserRoleModel();
-
-        $userRoleModel->id_user = $model->id;
-        $userRoleModel->id_role = $roleModel->id;
-
-        $userRoleModel->insert();
 
         Application::$app->session->set('successNotification', 'Uspesna registracija!');
 
@@ -59,7 +44,7 @@ class AuthController extends BaseController
             header("location:" . "/");
         }
 
-        $this->view->render('login', 'auth', new LoginModel());
+        $this->view->render('login', 'main', new LoginModel());
     }
 
     public function processLogin()
@@ -71,15 +56,15 @@ class AuthController extends BaseController
         $model->validate();
 
         if ($model->errors) {
-            $this->view->render('login', 'auth', $model);
+            $this->view->render('login', 'main', $model);
             exit;
         }
 
-        $loginPassword = $model->password;
+        $loginPassword = $model->passwordHash;
 
         $model->one("where email = '$model->email'");
 
-        $verifyResult = password_verify($loginPassword, $model->password);
+        $verifyResult = password_verify($loginPassword, $model->passwordHash);
 
         if ($verifyResult) {
             $sessionUserModel = new SessionUserModel();
@@ -89,11 +74,11 @@ class AuthController extends BaseController
             header("location:" . "/");
         }
 
-        $model->password = $loginPassword;
+        $model->passwordHash = $loginPassword;
 
         Application::$app->session->set('errorNotification', 'Neuspesan login!');
 
-        $this->view->render('login', 'auth', $model);
+        $this->view->render('login', 'main', $model);
     }
 
     public function processLogout()
@@ -104,7 +89,7 @@ class AuthController extends BaseController
 
     public function accessDenied()
     {
-        $this->view->render('accessDenied', 'auth', null);
+        $this->view->render('accessDenied', 'main', null);
     }
 
     public function accessRole(): array
