@@ -21,6 +21,7 @@ $app->router->get("/updateUser", [UserController::class, 'updateUser']);
 $app->router->get("/createUser", [UserController::class, 'createUser']);
 $app->router->post("/processUpdateUser", [UserController::class, 'processUpdateUser']);
 $app->router->post("/processCreateUser", [UserController::class, 'processCreate']);
+$app->router->get("/deleteUser", [UserController::class, 'deleteUser']);
 
 //Products
 $app->router->get("/ssds", [ProductController::class, 'ssds']);
@@ -28,6 +29,13 @@ $app->router->get("/gpus", [ProductController::class, 'gpus']);
 $app->router->get("/cpus", [ProductController::class, 'cpus']);
 $app->router->get("/updateProduct", [ProductController::class, 'update']);
 $app->router->post("/processUpdateProduct", [ProductController::class, 'processUpdate']);
+$app->router->get("/addGPU", [ProductController::class, 'addGPU']);
+$app->router->post("/processAddGPU", [ProductController::class, 'processAddGPU']);
+$app->router->get("/addCPU", [ProductController::class, 'addCPU']);
+$app->router->get("/addSSD", [ProductController::class, 'addSSD']);
+$app->router->post("/processAddCPU", [ProductController::class, 'processAddCPU']);
+$app->router->post("/processAddSSD", [ProductController::class, 'processAddSSD']);
+$app->router->get("/deleteProduct", [ProductController::class, 'deleteProduct']);
 
 //Auth
 $app->router->get("/registration", [AuthController::class, 'registration']);

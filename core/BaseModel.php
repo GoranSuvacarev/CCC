@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use app\models\ProductModel;
 use mysqli;
 
 abstract class BaseModel
@@ -95,6 +96,13 @@ abstract class BaseModel
             $query = str_replace(":$attribute", is_string($this->{$attribute}) ? '"' . $this->{$attribute} . '"' : $this->{$attribute}, $query);
         }
 
+        $this->con->query($query);
+    }
+
+    public function delete($where)
+    {
+        $tableName = $this->tableName();
+        $query = "delete from $tableName $where";
         $this->con->query($query);
     }
 

@@ -1,3 +1,8 @@
+<?php
+
+use app\core\Application;
+
+?>
 <section class="clean-block clean-catalog dark" style="background: var(--bs-body-bg);">
     <div class="container">
         <div style="text-align: center;">
@@ -84,16 +89,36 @@
                 <div class="col-md-9">
                     <div class="products" style="border-color: var(--bs-emphasis-color);">
                         <div class="row g-0">
-                            <?php
-                            foreach($params as $param){
 
-                                echo "<div class='col-12 col-md-6 col-lg-4'>
-                                         <div class='border-light-subtle clean-product-item'>
-                                            <div class='image'><a href='#'><img class='img-fluid d-block mx-auto' src='assets/img/"; echo"$param[image].jpg'"; echo"style='width: 230px;margin: 0px;margin-top: 24px;height: 120px;margin-bottom: 24px;'></a></div>
-                                            <div class='product-name'><a href='#' style='font-size: 26px;font-weight: bold;'>$param[name]</a></div>
+                            <?php
+                            if(Application::$app->session->get('user')){
+                                if($_SESSION['user'][0]['role'] == 'Admin'){
+                                    echo "<div class='col-12 col-md-6 col-lg-4'>
+                                            <div class='border-light-subtle clean-product-item'>
+                                            <div class='image'><a href='/addGPU'><img class='img-fluid d-block mx-auto' src='assets/img/gpu_default.jpg' style='width: 230px;margin: 0px;margin-top: 24px;height: 120px;margin-bottom: 24px;'></a></div>
+                                            <div class='product-name'><a href='/addGPU' style='font-size: 26px;font-weight: bold;'>Add new</a></div>
                                             <div class='about'>
                                                 <div class='price'>
-                                                    <h3>$param[price]</h3>
+                                                    <h3></h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                      </div>";
+                                }
+                            }
+                            foreach($params as $param){
+                                    echo "<div class='col-12 col-md-6 col-lg-4'>
+                                            <div class='border-light-subtle clean-product-item'>
+                                            <div class='image'><a href='#'><img class='img-fluid d-block mx-auto' src='assets/img/"; echo"$param[image].jpg'"; echo"style='width: 230px;margin: 0px;margin-top: 24px;height: 120px;margin-bottom: 24px;'></a></div>
+                                            <div class='product-name'><a href='#' style='font-size: 26px;font-weight: bold;'>$param[name]</a></div>
+                                            <div class='about'>";
+                                    if(Application::$app->session->get('user')){
+                                        if($_SESSION['user'][0]['role'] == 'Admin'){
+                                            echo "<div><a href="; echo "/deleteProduct?id=$param[id]&id_category=$param[id_category]"; echo">Delete</a></div>";
+                                        }
+                                    }
+                                    echo "<div class='price'>
+                                                    <h3>$$param[price]</h3>
                                                 </div>
                                             </div>
                                         </div>

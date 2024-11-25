@@ -32,9 +32,14 @@ use app\core\Application;
                 <li class="nav-item"><a class="nav-link active" href="/gpus" style="font-size: 18px;color: var(--bs-emphasis-color);">Graphics cards</a></li>
                 <li class="nav-item"><a class="nav-link" href="/cpus" style="font-size: 18px;color: var(--bs-emphasis-color);">Processors</a></li>
                 <li class="nav-item"><a class="nav-link" href="/ssds" style="font-size: 18px;color: var(--bs-emphasis-color);">Storage</a></li>
+                <?php
+                    if(Application::$app->session->get('user')){
+                        if($_SESSION['user'][0]['role'] == 'Admin'){
+                            echo "<li class='nav-item'><a class='nav-link' href='/users' style='font-size: 18px;color: var(--bs-emphasis-color)'>Users</a></li>";
+                        }
+                    }
+                ?>
             </ul>
-
-
             <?php
             if (Application::$app->session->get('user')) {
                 echo'<a href="/processLogout"><button class="btn btn-primary" type="button">Log out</button></a>';
@@ -60,6 +65,24 @@ use app\core\Application;
 </footer>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bs-init.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.2/bootstrap-slider.min.js"></script>
+<script src="assets/js/range-clock-speed.js"></script>
+<script src="assets/js/range-cores.js"></script>
+<script src="assets/js/range-cpu-clock-speed.js"></script>
+<script src="assets/js/range-cpu-price.js"></script>
+<script src="assets/js/range-memory_bus_widht.js"></script>
+<script src="assets/js/range-price.js"></script>
+<script src="assets/js/range-seq-read.js"></script>
+<script src="assets/js/range-seq-write.js"></script>
+<script src="assets/js/range-ssd-price.js"></script>
+<script src="assets/js/range-storage.js"></script>
+<script src="assets/js/range-tb-written.js"></script>
+<script src="assets/js/range-tdp.js"></script>
+<script src="assets/js/range-texture-mapping-units.js"></script>
+<script src="assets/js/range-threads.js"></script>
+<script src="assets/js/range-vram-size.js"></script>
+<script src="assets/js/stars-progress-bar-product_view.js"></script>
+<script src="assets/js/test.js"></script>
 </body>
 
 <?php

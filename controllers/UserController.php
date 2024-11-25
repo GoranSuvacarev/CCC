@@ -20,9 +20,9 @@ class UserController extends BaseController
     {
         $model = new UserModel();
 
-        $results = $model->all("");
+        $users = $model->all("where id_roles = 2");
 
-        $this->view->render('users', 'main', $results);
+        $this->view->render('users', 'main', $users);
     }
 
     public function updateUser()
@@ -64,6 +64,14 @@ class UserController extends BaseController
         $model = new UserModel();
 
         $this->view->render('createUser', 'main', $model);
+    }
+
+    public function deleteUser()
+    {
+        $model = new UserModel();
+        $model->mapData($_GET);
+        $model->delete("where id = $model->id");
+        header("location:" . "/users");
     }
 
     public function processCreate()

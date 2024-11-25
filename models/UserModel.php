@@ -8,6 +8,7 @@ use app\core\DbConnection;
 class UserModel extends BaseModel
 {
     public int $id;
+    public string $username= '';
 
     public string $email = '';
 
@@ -20,12 +21,12 @@ class UserModel extends BaseModel
 
     public function readColumns(): array
     {
-        return ["id", "email"];
+        return ["id", "email" ,"username"];
     }
 
     public function editColumns(): array
     {
-        return ["email"];
+        return ["email", "username"];
     }
 
     public function validationRules(): array

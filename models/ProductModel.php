@@ -10,7 +10,8 @@ class ProductModel extends BaseModel
     public int $id;
     public string $name = '';
     public string $image = '';
-    public int $price;
+    public string $price = '';
+    public int $id_category;
 
     public function tableName()
     {
@@ -19,12 +20,12 @@ class ProductModel extends BaseModel
 
     public function readColumns()
     {
-        return ["id", "name", "price","image"];
+        return ["id", "name", "price","image","id_category"];
     }
 
     public function editColumns()
     {
-        return ["name", "price", "image"];
+        return ["name", "price", "image","id_category"];
     }
 
     public function validationRules(): array

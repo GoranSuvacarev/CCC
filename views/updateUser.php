@@ -7,40 +7,35 @@ use app\models\UserModel;
 
 ?>
 
-<div class="card">
-    <form action="/processUpdateUser" method="post">
-        <input type="hidden" name="id" value="<?php echo $params->id ?>">
-        <div class="card-header pb-0">
-            <div class="d-flex align-items-center">
-                <p class="mb-0">Edit Profile</p>
-                <button class="btn btn-success btn-sm ms-auto" type="submit">Save</button>
-            </div>
+<main class="page" style="height: 669px;">
+    <section class="clean-block clean-form dark">
+        <div class="container d-flex justify-content-center align-items-center mt-5">
+            <form role="form" method="post" class="text-start" style="margin-top: 120px;" action="/processUpdateUser">
+                <input type="hidden" name="id" value="<?php echo $params->id ?>">
+                <div class="mb-3"><label class="form-label" for="username">Username</label><input class="form-control" type="text" name="username" id="username" value="<?php echo $params->username ?>" data-bs-theme="light">
+                    <?php
+                    if ($params != null && $params->errors != null) {
+                        foreach ($params->errors as $attribute => $error) {
+                            if ($attribute == 'username') {
+                                echo "<span class='text-danger'>$error[0]</span>";
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control item" type="email" name="email" id="email" value="<?php echo $params->email ?>" data-bs-theme="light">
+                    <?php
+                    if ($params != null && $params->errors != null) {
+                        foreach ($params->errors as $attribute => $error) {
+                            if ($attribute == 'email') {
+                                echo "<span class='text-danger'>$error[0]</span>";
+                            }
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="mb-3"></div><button class="btn btn-primary text-center align-items-xxl-center" type="submit">Edit</button>
+            </form>
         </div>
-        <div class="card-body">
-            <p class="text-uppercase text-sm">User Information</p>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Email address</label>
-                        <input class="form-control" type="email" name="email" value="<?php echo $params->email ?>"
-                               onfocus="focused(this)" onfocusout="defocused(this)">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">First name</label>
-                        <input class="form-control" type="text" name="first_name" value="<?php echo $params->first_name ?>"
-                               onfocus="focused(this)" onfocusout="defocused(this)">
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Last name</label>
-                        <input class="form-control" type="text" name="last_name" value="<?php echo $params->last_name ?>"
-                               onfocus="focused(this)" onfocusout="defocused(this)">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </form>
-</div>
+    </section>
+</main>

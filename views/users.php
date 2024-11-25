@@ -1,45 +1,41 @@
-<div class="card">
-    <div class="card-header pb-0">
-        <div class="d-flex align-items-center">
-            <h6>Users</h6>
-            <a class="btn btn-primary btn-sm ms-auto" href="/createUser">Create</a>
-        </div>
-    </div>
-    <div class="card-body px-0 pt-0 pb-2">
-        <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-                <thead>
-                <tr>
-                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">User</th>
-                    <th class="text-secondary opacity-7"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <?php
-
-                foreach ($params as $user) {
-                    echo "<tr>";
-                    echo "<td>";
-                    echo "<div class='d-flex px-2 py-1'>";
-                    echo "<div>";
-                    echo "<img src='../assets/img/team-2.jpg' class='avatar avatar-sm me-3' alt='user1'>";
-                    echo "</div>";
-                    echo "<div class='d-flex flex-column justify-content-center'>";
-                    echo "<h6 class='mb-0 text-sm'>$user[first_name] $user[last_name]</h6>";
-                    echo "<p class='text-xs text-secondary mb-0'>$user[email]</p>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo " </td>";
-                    echo "<td class='align-middle'>";
-                    echo "<a href='/updateUser?id=$user[id]' target='_blank' class='text-secondary font-weight-bold text-xs' data-toggle='tooltip' data-original-title='Edit user'>";
-                    echo "Edit";
-                    echo "</a>";
-                    echo " </td>";
-                    echo "  </tr>";
-                }
-                ?>
-                </tbody>
-            </table>
+<div class="d-flex flex-column" id="content-wrapper">
+    <div id="content">
+        <div class="container-fluid">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h1>Users</h1>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive table mt-2" id="dataTable-1" role="grid" aria-describedby="dataTable_info">
+                        <table class="table my-0" id="dataTable">
+                            <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Mail</th>
+                                <th>Reviews</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($params as $user) {
+                                echo"
+                                        <tr>
+                                        <td>$user[username]</td>
+                                        <td>$user[email]</td>
+                                        <td>#Number</td>
+                                        <td><a href="; echo"/updateUser?id=$user[id]"; echo">Edit</a></td>
+                                        <td><a href="; echo "/deleteUser?id=$user[id]"; echo">Remove</a></td>
+                                        </tr>
+                                    ";
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

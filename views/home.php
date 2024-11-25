@@ -26,7 +26,7 @@ use app\models\SuggestionModel;
                         <div class="card-body p-sm-5" style="width: 419px;">
                             <h2 class="text-center mb-4" style="font-size: 32px;">Suggest a product</h2>
                             <form method="post" action="/addSuggestion"><span style="font-size: 20px;margin-top: 0px;margin-bottom: 0px;padding-bottom: 0px;">Product name</span>
-                                <input type="hidden" name="id_users" value="<?php echo ($_SESSION['user'][0]['id_user'] ?? 0) ?>">
+                                <input type="hidden" name="id_users" value="<?php echo $_SESSION['user'][0]['id_user'] ?? 0 ?>">
                                 <div class="mb-3"><input class="form-control" type="text" id="name" name="name" placeholder="Write the name here"></div><span style="font-size: 20px;">Sources (Optional)</span>
                                 <div class="mb-3"><textarea class="form-control" id="source" name="source" rows="6" placeholder="Where can we find more inforamtion" style="max-height: 200px;min-height: 50px;height: 170;"></textarea></div>
                                 <div><button class="btn btn-primary d-block w-100" type="submit">Send</button></div>
