@@ -9,7 +9,7 @@ class ReportController extends BaseController
 {
 
     public function myReports(){
-        $this->view->render("myReports","list",null);
+        $this->view->render("myReports","main",null);
     }
 
     /*

@@ -16,7 +16,7 @@ class ProductController extends BaseController
 
         $results = $model->all("where id_category = 3");
 
-        $this->view->render('ssds', 'list', $results);
+        $this->view->render('ssds', 'main', $results);
     }
 
     public function gpus()
@@ -25,10 +25,7 @@ class ProductController extends BaseController
 
         $results = $model->all("where id_category = 1");
 
-        ;
-        exit;
-
-        $this->view->render('gpus', 'list', $results);
+        $this->view->render('gpus', 'main', $results);
     }
 
     public function cpus()
@@ -37,7 +34,7 @@ class ProductController extends BaseController
 
         $results = $model->all("where id_category = 2");
 
-        $this->view->render('cpus', 'list', $results);
+        $this->view->render('cpus', 'main', $results);
     }
 
     public function update()
@@ -48,7 +45,7 @@ class ProductController extends BaseController
 
         $model->one("where id = $model->id");
 
-        $this->view->render('updateProduct', 'list', $model);
+        $this->view->render('updateProduct', 'main', $model);
     }
 
     public function processUpdate()
@@ -61,7 +58,7 @@ class ProductController extends BaseController
 
         if ($model->errors) {
             Application::$app->session->set('errorNotification', 'Neuspesna promena!');
-            $this->view->render('updateProduct', 'list', $model);
+            $this->view->render('updateProduct', 'catalogue', $model);
             exit;
         }
 

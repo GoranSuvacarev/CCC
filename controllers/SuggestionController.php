@@ -25,7 +25,6 @@ class SuggestionController extends BaseController
             $this->view->render('/home', 'main', $model);
             exit;
         }
-
         $model->validate();
 
         if ($model->errors) {
