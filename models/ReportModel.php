@@ -12,11 +12,11 @@ class ReportModel extends BaseModel
         public function getSuggestionsPerProduct()
     {
         if (!$this->from || $this->from == '') {
-            $this->from = "2024-01-01";
+            $this->from = "2024-1-1";
         }
 
         if (!$this->to || $this->to == '') {
-            $this->to = "2025-01-01";
+            $this->to = "2025-1-1";
         }
 
         $dbResult = $this->con->query("SELECT COUNT(NAME) as 'counter',name FROM product_suggestions WHERE DATE(suggestion_time) BETWEEN '$this->from' AND '$this->to' GROUP BY name;");
