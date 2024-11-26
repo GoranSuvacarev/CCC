@@ -7,24 +7,13 @@ use app\models\ReportModel;
 
 class ReportController extends BaseController
 {
-
-    public function myReports(){
-        $this->view->render("myReports","main",null);
-    }
-
-    /*
-    public function getNumberOfReservationsPerMonth()
+    public function getSuggestionsPerProduct()
     {
         $model = new ReportModel();
-        $model->getNumberOfReservationsPerMonth();
+        $model->mapData($_POST);
+        $model->getSuggestionsPerProduct();
     }
 
-    public function getPricePerMonth()
-    {
-        $model = new ReportModel();
-        $model->getPricePerMonth();
-    }
-    */
     public function accessRole()
     {
         return [];

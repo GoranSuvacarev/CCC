@@ -21,6 +21,7 @@ use app\core\Application;
     <link rel="stylesheet" href="assets/css/stars-progress-bar.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+    <script src="../assets/js/plugins/chartjs.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/dark-hive/jquery-ui.css">
 </head>
 

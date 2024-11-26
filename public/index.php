@@ -47,8 +47,7 @@ $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
 
 //Reports
 $app->router->get("/myReports", [ReportController::class, 'myReports']);
-//$app->router->get("/getNumberOfReservationsPerMonth", [ReportController::class, 'getNumberOfReservationsPerMonth']);
-//$app->router->get("/getPricePerMonth", [ReportController::class, 'getPricePerMonth']);
+$app->router->get("/getSuggestionsPerProduct", [ReportController::class, 'getSuggestionsPerProduct']);
 
 //Suggestions
 $app->router->post("/addSuggestion", [SuggestionController::class, 'addSuggestion']);

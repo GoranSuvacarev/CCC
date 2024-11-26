@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\BaseController;
+use app\models\SuggestionModel;
 use app\models\UserModel;
 
 class UserController extends BaseController
@@ -68,8 +69,10 @@ class UserController extends BaseController
 
     public function deleteUser()
     {
+        $suggestion = new SuggestionModel();
         $model = new UserModel();
         $model->mapData($_GET);
+        $suggestion->delete("where id_users = $model->id");
         $model->delete("where id = $model->id");
         header("location:" . "/users");
     }

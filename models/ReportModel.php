@@ -7,18 +7,19 @@ use app\core\BaseModel;
 
 class ReportModel extends BaseModel
 {
-
-    /*
-        public function getNumberOfReservationsPerMonth()
+    public string $from = '';
+    public string $to = '';
+        public function getSuggestionsPerProduct()
     {
-        $id_user = 0;
-        $sessions = Application::$app->session->get('user');
-
-        foreach ($sessions as $session) {
-            $id_user = $session['id_user'];
+        if (!$this->from || $this->from == '') {
+            $this->from = "2024-01-01";
         }
 
-        $dbResult = $this->con->query("SELECT MONTHNAME(reservation_time) as 'month', count(id) as 'number_of_reservations' FROM reservations where id_user = $id_user group by MONTHNAME(reservation_time);");
+        if (!$this->to || $this->to == '') {
+            $this->to = "2025-01-01";
+        }
+
+        $dbResult = $this->con->query("SELECT COUNT(NAME) as 'counter',name FROM product_suggestions WHERE DATE(suggestion_time) BETWEEN '$this->from' AND '$this->to' GROUP BY name;");
 
         $resultArray = [];
 
@@ -29,26 +30,6 @@ class ReportModel extends BaseModel
         echo json_encode($resultArray);
     }
 
-        public function getPricePerMonth()
-    {
-        $id_user = 0;
-        $sessions = Application::$app->session->get('user');
-
-        foreach ($sessions as $session) {
-            $id_user = $session['id_user'];
-        }
-
-        $dbResult = $this->con->query("SELECT MONTHNAME(reservation_time) as 'month',  sum(price) as 'price' FROM reservations where id_user = $id_user group by MONTHNAME(reservation_time);");
-
-        $resultArray = [];
-
-        while ($result = $dbResult->fetch_assoc()) {
-            $resultArray[] = $result;
-        }
-
-        echo json_encode($resultArray);
-    }
-     */
 
     public function tableName()
     {

@@ -1,58 +1,27 @@
-<?php
-
-use app\models\UserModel;
-
-/** @var $params UserModel
- */
-
-?>
-
-<div class="card">
-    <form action="/processUpdateProduct" method="post">
-        <input type="hidden" name="id" value="<?php echo $params->id ?>">
-        <div class="card-header pb-0">
-            <div class="d-flex align-items-center">
-                <p class="mb-0">Edit Profile</p>
-                <button class="btn btn-success btn-sm ms-auto" type="submit">Save</button>
-            </div>
-        </div>
-        <div class="card-body">
-            <p class="text-uppercase text-sm">Product Information</p>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Name</label>
-                        <input class="form-control" type="text" name="name" value="<?php echo $params->name ?>"
-                               onfocus="focused(this)" onfocusout="defocused(this)">
-                        <?php
-                        if ($params != null && $params->errors != null) {
-                            foreach ($params->errors as $attribute => $error) {
-                                if ($attribute == 'name') {
-                                    echo "<span class='text-danger'>$error[0]</span>";
-                                }
-                            }
-                        }
-                        ?>
+<div class='card'>
+    <div class='card-body'>
+        <div class='row'>
+            <div class='col-md-6'>
+                <div class='row'>
+                    <div class='col-md-6'>
+                        <label for='from'>From:</label>
+                        <input type='date' class='form-control date-helper' placeholder='From' id='from'>
+                    </div>
+                    <div class='col-md-6'>
+                        <label for='from'>To:</label>
+                        <input type='date' class='form-control date-helper' placeholder='To' id='to'>
                     </div>
                 </div>
-
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="example-text-input" class="form-control-label">Price</label>
-                        <input class="form-control" type="text" name="price" value="<?php echo $params->price ?>"
-                               onfocus="focused(this)" onfocusout="defocused(this)">
-                        <?php
-                        if ($params != null && $params->errors != null) {
-                            foreach ($params->errors as $attribute => $error) {
-                                if ($attribute == 'price') {
-                                    echo "<span class='text-danger'>$error[0]</span>";
-                                }
-                            }
-                        }
-                        ?>
+                <div class='chart'>
+                    <div id='price-per-user-canvas'>
+                        <canvas id='price-per-user'
+                                style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;'
+                                class='chartjs-render-monitor'></canvas>
                     </div>
                 </div>
             </div>
+            <div class='col-md-6'>
+            </div>
         </div>
-    </form>
+    </div>
 </div>
