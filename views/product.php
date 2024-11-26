@@ -93,10 +93,10 @@ function getImagePrefix($category, $productName) {
                     <div style="width: 500px;height: 250px;margin-top: 50px;">
                         <form style="width: 500px;">
                             <div class="d-sm-flex justify-content-sm-center">
-                                <h1 class="d-flex" style="font-size: 35px;width: 348px;">Leave a review</h1>
+                                <h1 class="d-flex" style="font-size: 30px;width: 360px;">Rate the product</h1>
                             </div>
                             <div class="d-flex d-md-flex justify-content-lg-center align-items-lg-center div-review">
-                                <p class="d-lg-flex align-items-lg-center p-review"><?php echo $product->name ?></p>
+                                <p class="d-lg-flex align-items-lg-center p-review" style="font-size: 22px; margin-right: 30px; margin-top: 20px"><?php echo $product->name ?></p>
                                 <div>
                                     <select class="form-select" style="width: 110.203px;padding: 12px 72px 12px 24px;height: 55px;margin-right: 9px;">
                                         <optgroup label="Rating">
