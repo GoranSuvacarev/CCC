@@ -1,52 +1,32 @@
-<?php
-
-use app\models\LoginModel;
-
-/** @var $params LoginModel
- */
-
-?>
-
-<div class="card card-plain">
-    <div class="card-header pb-0 text-start">
-        <h4 class="font-weight-bolder">Sign In</h4>
-        <p class="mb-0">Enter your email and password to sign In</p>
-    </div>
-    <div class="card-body">
-        <form role="form" method="post" action="/processLogin">
-            <div class="mb-3">
-                <input type="email" name="email" class="form-control form-control-lg" placeholder="Email" aria-label="Email" value="<?php echo $params->email ?>">
-                <?php
-                if ($params != null && $params->errors != null) {
-                    foreach ($params->errors as $attribute => $error) {
-                        if ($attribute == 'email') {
-                            echo "<span class='text-danger'>$error[0]</span>";
+<main class="page" style="height: 669px;">
+    <section class="clean-block clean-form dark" >
+        <div class="container d-flex justify-content-center align-items-center mt-5">
+            <form class="text-start" style="margin-top: 120px;" role="form" method="post" action="/processLogin">
+                <div class="mb-3"><label class="form-label" for="email">Email</label><input class="form-control item" type="email" name="email" id="email" value="<?php echo $params->email ?>" data-bs-theme="light">
+                    <?php
+                    if ($params != null && $params->errors != null) {
+                        foreach ($params->errors as $attribute => $error) {
+                            if ($attribute == 'email') {
+                                echo "<span class='text-danger'>$error[0]</span>";
+                            }
                         }
                     }
-                }
-                ?>
-            </div>
-            <div class="mb-3">
-                <input type="password" name="passwordHash" class="form-control form-control-lg" placeholder="Password" aria-label="Password" value="<?php echo $params->passwordHash ?>">
-                <?php
-                if ($params != null && $params->errors != null) {
-                    foreach ($params->errors as $attribute => $error) {
-                        if ($attribute == 'passwordHash') {
-                            echo "<span class='text-danger'>$error[0]</span>";
+                    ?>
+                </div>
+                <div class="mb-3"><label class="form-label" for="password">Password</label><input class="form-control" type="password" name="passwordHash" id="password" value="<?php echo $params->passwordHash ?>" data-bs-theme="light">
+                    <?php
+                    if ($params != null && $params->errors != null) {
+                        foreach ($params->errors as $attribute => $error) {
+                            if ($attribute == 'passwordHash') {
+                                echo "<span class='text-danger'>$error[0]</span>";
+                            }
                         }
                     }
-                }
-                ?>
-            </div>
-            <div class="text-center">
-                <button type="submit" class="btn btn-lg btn-primary btn-lg w-100 mt-4 mb-0">Sign In</button>
-            </div>
-        </form>
-    </div>
-    <div class="card-footer text-center pt-0 px-lg-2 px-1">
-        <p class="mb-4 text-sm mx-auto">
-            Don't have an account?
-            <a href="/registration" class="text-primary text-gradient font-weight-bold">Sign Up</a>
-        </p>
-    </div>
-</div>
+                    ?>
+                </div><span>Don't have an account?&nbsp;</span><a href="/registration">Sign up</a>
+                <div class="mb-3">
+                </div><button class="btn btn-primary text-center align-items-xxl-center" type="submit">Sign In</button>
+            </form>
+        </div>
+    </section>
+</main>

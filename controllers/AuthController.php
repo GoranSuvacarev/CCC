@@ -84,7 +84,7 @@ class AuthController extends BaseController
     public function processLogout()
     {
         Application::$app->session->delete('user');
-        header("location:" . "/login");
+        header("location:" . "/");
     }
 
     public function accessDenied()

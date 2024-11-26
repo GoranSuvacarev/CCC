@@ -5,6 +5,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use app\controllers\AuthController;
 use app\controllers\HomeController;
 use app\controllers\ProductController;
+use app\controllers\SuggestionController;
 use app\controllers\UserController;
 use app\controllers\ReportController;
 use app\core\Application;
@@ -20,11 +21,21 @@ $app->router->get("/updateUser", [UserController::class, 'updateUser']);
 $app->router->get("/createUser", [UserController::class, 'createUser']);
 $app->router->post("/processUpdateUser", [UserController::class, 'processUpdateUser']);
 $app->router->post("/processCreateUser", [UserController::class, 'processCreate']);
+$app->router->get("/deleteUser", [UserController::class, 'deleteUser']);
 
 //Products
-$app->router->get("/products", [ProductController::class, 'products']);
+$app->router->get("/ssds", [ProductController::class, 'ssds']);
+$app->router->get("/gpus", [ProductController::class, 'gpus']);
+$app->router->get("/cpus", [ProductController::class, 'cpus']);
 $app->router->get("/updateProduct", [ProductController::class, 'update']);
 $app->router->post("/processUpdateProduct", [ProductController::class, 'processUpdate']);
+$app->router->get("/addGPU", [ProductController::class, 'addGPU']);
+$app->router->post("/processAddGPU", [ProductController::class, 'processAddGPU']);
+$app->router->get("/addCPU", [ProductController::class, 'addCPU']);
+$app->router->get("/addSSD", [ProductController::class, 'addSSD']);
+$app->router->post("/processAddCPU", [ProductController::class, 'processAddCPU']);
+$app->router->post("/processAddSSD", [ProductController::class, 'processAddSSD']);
+$app->router->get("/deleteProduct", [ProductController::class, 'deleteProduct']);
 
 //Auth
 $app->router->get("/registration", [AuthController::class, 'registration']);
@@ -38,5 +49,8 @@ $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
 $app->router->get("/myReports", [ReportController::class, 'myReports']);
 //$app->router->get("/getNumberOfReservationsPerMonth", [ReportController::class, 'getNumberOfReservationsPerMonth']);
 //$app->router->get("/getPricePerMonth", [ReportController::class, 'getPricePerMonth']);
+
+//Suggestions
+$app->router->post("/addSuggestion", [SuggestionController::class, 'addSuggestion']);
 
 $app->run();

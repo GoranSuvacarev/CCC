@@ -52,4 +52,22 @@ class Session
             $this->delete("errorNotification");
         }
     }
+
+    public function isInRole($role): bool
+    {
+        $isInRole = false;
+
+        $sessions = Application::$app->session->get('users');
+
+        echo $sessions;
+        exit;
+
+        foreach ($sessions as $session) {
+            if ($session['role'] == $role) {
+                $isInRole = true;
+            }
+        }
+
+        return $isInRole;
+    }
 }
