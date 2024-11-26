@@ -48,12 +48,45 @@ class ProductController extends BaseController
         $this->view->render('gpus', 'main', $data);
     }
 
-    public function gpu()
+    public function product()
     {
         $model = new ProductModel();
         $model->mapData($_GET);
         $model->one("where id = $model->id");
-        $this->view->render('gpu', 'main', $model);
+
+        // Get category name
+        $categoryResult = $model->con->query(
+            "SELECT c.name as category_name 
+             FROM category c 
+             WHERE c.id = $model->id_category"
+        );
+        $category = $categoryResult->fetch_assoc();
+
+        // Get product features
+        $featureModel = new FeatureModel();
+        $features = $featureModel->con->query(
+            "SELECT f.name, pf.value 
+             FROM products_feature pf
+             JOIN feature f ON f.id = pf.id_feature
+             WHERE pf.id_products = $model->id
+             ORDER BY f.id"
+        );
+
+        $featureData = [];
+        while ($feature = $features->fetch_assoc()) {
+            $featureData[] = [
+                'name' => $feature['name'],
+                'value' => $feature['value']
+            ];
+        }
+
+        $viewData = [
+            'product' => $model,
+            'category' => $category['category_name'],
+            'features' => $featureData
+        ];
+
+        $this->view->render('product', 'main', $viewData);
     }
 
     public function cpus()

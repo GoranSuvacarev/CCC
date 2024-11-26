@@ -3,6 +3,17 @@ a:hover {
   text-decoration: none;
 }
 
+.div-review {
+  width: 500px;
+  height: 90px;
+  background: var(--bs-body-bg);
+  border: 2px solid var(--bs-emphasis-color) ;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  max-height: 90px;
+
+}
+
 .form-check-label {
 }
 
