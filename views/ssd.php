@@ -16,7 +16,6 @@ $pcie_version = new FeatureModel();
 $pcie_version->one("where id_feature = 24 and id_products=$params->id");
 $terabytes_written = new FeatureModel();
 $terabytes_written->one("where id_feature = 25 and id_products=$params->id");
-
 ?>
 
     <main class="page">
@@ -38,7 +37,7 @@ $terabytes_written->one("where id_feature = 25 and id_products=$params->id");
                             <div class="gallery">
                                 <div id="product-preview" class="vanilla-zoom">
                                     <div class="zoomed-image"></div>
-                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/gpu_default.jpg" width="376" height="196" style="margin-top: 0px;"></div>
+                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/<?php echo $params->image?>.jpg" width="376" height="196" style="margin-top: 0px;"></div>
                                 </div>
                                 <p class="text-center" style="color: var(--bs-emphasis-color);font-size: 30px;margin-top: 50px;"><?php echo $params->name ?></p>
                             </div>
@@ -48,13 +47,13 @@ $terabytes_written->one("where id_feature = 25 and id_products=$params->id");
             </div>
             <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" style="height: 800px;border-top-style: groove;border-top-color: var(--bs-emphasis-color);">
                 <div>
-                    <p>clock_speed:<?php echo "$clock_speed->value"; ?></p>
-                    <p>turbo_speed:<?php echo "$turbo_speed->value"; ?></p>
-                    <p>pixel_rate:<?php echo "$pixel_rate->value"; ?></p>
-                    <p>texture_mapping_units:<?php echo "$texture_mapping_units->value"; ?></p>
-                    <p>render_output_units:<?php echo "$render_output_units->value"; ?></p>
-                    <p>vram_size:<?php echo "$vram_size->value"; ?></p>
-                    <p>memory_bus_width:<?php echo "$memory_bus_width->value"; ?></p>
+                    <p>sequential_read_speed:<?php echo "$sequential_read_speed->value"; ?></p>
+                    <p>random_read_speed:<?php echo "$random_read_speed->value"; ?></p>
+                    <p>sequential_write_speed:<?php echo "$sequential_write_speed->value"; ?></p>
+                    <p>random_write_speed:<?php echo "$random_write_speed->value"; ?></p>
+                    <p>storage:<?php echo "$storage->value"; ?></p>
+                    <p>pcie_version:<?php echo "$pcie_version->value"; ?></p>
+                    <p>terabytes_written:<?php echo "$terabytes_written->value"; ?></p>
                 </div>
             </div>
             <div class="d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center" style="height: 400px;border-top-style: groove;border-top-color: var(--bs-emphasis-color);">

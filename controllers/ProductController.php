@@ -42,6 +42,14 @@ class ProductController extends BaseController
         $this->view->render('ssds', 'main', $data);
     }
 
+    public function ssd()
+    {
+        $model = new ProductModel();
+        $model->mapData($_GET);
+        $model->one("where id = $model->id");
+        $this->view->render('ssd', 'main', $model);
+    }
+
     public function gpus()
     {
         $data = $this->getPaginatedResults(1);
@@ -60,6 +68,14 @@ class ProductController extends BaseController
     {
         $data = $this->getPaginatedResults(2);
         $this->view->render('cpus', 'main', $data);
+    }
+
+    public function cpu()
+    {
+        $model = new ProductModel();
+        $model->mapData($_GET);
+        $model->one("where id = $model->id");
+        $this->view->render('cpu', 'main', $model);
     }
 
     public function compare()

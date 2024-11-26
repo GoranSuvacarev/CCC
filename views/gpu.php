@@ -38,7 +38,7 @@ $memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
                             <div class="gallery">
                                 <div id="product-preview" class="vanilla-zoom">
                                     <div class="zoomed-image"></div>
-                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/gpu_default.jpg" width="376" height="196" style="margin-top: 0px;"></div>
+                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/<?php echo $params->image?>.jpg" width="376" height="196" style="margin-top: 0px;"></div>
                                 </div>
                                 <p class="text-center" style="color: var(--bs-emphasis-color);font-size: 30px;margin-top: 50px;"><?php echo $params->name ?></p>
                             </div>

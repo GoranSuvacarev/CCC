@@ -2,20 +2,28 @@
 
 use app\models\FeatureModel;
 
+$socket = new FeatureModel();
+$socket->one("where id_feature = 8 and id_products=$params->id");
+$chipset = new FeatureModel();
+$chipset->one("where id_feature = 9 and id_products=$params->id");
+$semiconductor_size = new FeatureModel();
+$semiconductor_size->one("where id_feature = 10 and id_products=$params->id");
+$thermal_design_power = new FeatureModel();
+$thermal_design_power->one("where id_feature = 11 and id_products=$params->id");
 $clock_speed = new FeatureModel();
-$clock_speed->one("where id_feature = 1 and id_products=$params->id");
+$clock_speed->one("where id_feature = 12 and id_products=$params->id");
 $turbo_speed = new FeatureModel();
-$turbo_speed->one("where id_feature = 2 and id_products=$params->id");
-$pixel_rate = new FeatureModel();
-$pixel_rate->one("where id_feature = 3 and id_products=$params->id");
-$texture_mapping_units = new FeatureModel();
-$texture_mapping_units->one("where id_feature = 4 and id_products=$params->id");
-$render_output_units = new FeatureModel();
-$render_output_units->one("where id_feature = 5 and id_products=$params->id");
-$vram_size = new FeatureModel();
-$vram_size->one("where id_feature = 6 and id_products=$params->id");
-$memory_bus_width = new FeatureModel();
-$memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
+$turbo_speed->one("where id_feature = 13 and id_products=$params->id");
+$threads = new FeatureModel();
+$threads->one("where id_feature = 14 and id_products=$params->id");
+$cores = new FeatureModel();
+$cores->one("where id_feature = 15 and id_products=$params->id");
+$l1_cache = new FeatureModel();
+$l1_cache->one("where id_feature = 16 and id_products=$params->id");
+$l2_cache = new FeatureModel();
+$l2_cache->one("where id_feature = 17 and id_products=$params->id");
+$l3_cache = new FeatureModel();
+$l3_cache->one("where id_feature = 18 and id_products=$params->id");
 
 ?>
 
@@ -38,7 +46,7 @@ $memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
                             <div class="gallery">
                                 <div id="product-preview" class="vanilla-zoom">
                                     <div class="zoomed-image"></div>
-                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/gpu_default.jpg" width="376" height="196" style="margin-top: 0px;"></div>
+                                    <div class="d-xl-flex justify-content-xl-center align-items-xl-center sidebar"><img class="img-fluid small-preview" src="assets/img/<?php echo $params->image?>.jpg" width="376" height="196" style="margin-top: 0px;"></div>
                                 </div>
                                 <p class="text-center" style="color: var(--bs-emphasis-color);font-size: 30px;margin-top: 50px;"><?php echo $params->name ?></p>
                             </div>
@@ -48,13 +56,18 @@ $memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
             </div>
             <div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" style="height: 800px;border-top-style: groove;border-top-color: var(--bs-emphasis-color);">
                 <div>
+                    <p>socket:<?php echo "$socket->value"; ?></p>
+                    <p>chipset:<?php echo "$$chipset->value"; ?></p>
+                    <p>semiconductor_size:<?php echo "$semiconductor_size->value"; ?></p>
+                    <p>thermal_design_power:<?php echo "$thermal_design_power->value"; ?></p>
                     <p>clock_speed:<?php echo "$clock_speed->value"; ?></p>
                     <p>turbo_speed:<?php echo "$turbo_speed->value"; ?></p>
-                    <p>pixel_rate:<?php echo "$pixel_rate->value"; ?></p>
-                    <p>texture_mapping_units:<?php echo "$texture_mapping_units->value"; ?></p>
-                    <p>render_output_units:<?php echo "$render_output_units->value"; ?></p>
-                    <p>vram_size:<?php echo "$vram_size->value"; ?></p>
-                    <p>memory_bus_width:<?php echo "$memory_bus_width->value"; ?></p>
+                    <p>threads:<?php echo "$threads->value"; ?></p>
+                    <p>cores:<?php echo "$cores->value"; ?></p>
+                    <p>l1_cache:<?php echo "$l1_cache->value"; ?></p>
+                    <p>l2_cache:<?php echo "$l2_cache->value"; ?></p>
+                    <p>l3_cache:<?php echo "$l3_cache->value"; ?></p>
+
                 </div>
             </div>
             <div class="d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center" style="height: 400px;border-top-style: groove;border-top-color: var(--bs-emphasis-color);">
