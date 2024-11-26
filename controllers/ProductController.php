@@ -11,6 +11,42 @@ use app\models\ProductModel;
 
 class ProductController extends BaseController
 {
+    public function search()
+    {
+        if (isset($_GET['term'])) {
+            $model = new ProductModel();
+            $term = $_GET['term'];
+
+            // Basic query for first search box
+            $query = "SELECT id, manufacturer, name, id_category 
+                 FROM products 
+                 WHERE CONCAT(manufacturer, ' ', name) LIKE '%$term%'";
+
+            // Add category filter for second search box if category is provided
+            if (isset($_GET['category'])) {
+                $category = $_GET['category'];
+                $query .= " AND id_category = $category";
+            }
+
+            $query .= " LIMIT 5";
+
+            $results = $model->con->query($query);
+
+            $suggestions = [];
+            while ($row = $results->fetch_assoc()) {
+                $suggestions[] = [
+                    'id' => $row['id'],
+                    'value' => $row['manufacturer'] . ' ' . $row['name'],
+                    'category' => $row['id_category']
+                ];
+            }
+
+            header('Content-Type: application/json');
+            echo json_encode($suggestions);
+            exit;
+        }
+    }
+
     private function getPaginatedResults($categoryId) {
         $model = new ProductModel();
 
