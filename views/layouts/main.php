@@ -83,7 +83,7 @@ use app\core\Application;
 <script src="assets/js/range-threads.js"></script>
 <script src="assets/js/range-vram-size.js"></script>
 <script src="assets/js/stars-progress-bar-product_view.js"></script>
-<script src="assets/js/test.js"></script>
+<script src="assets/js/searchInvisible.js"></script>
 </body>
 
 <?php
