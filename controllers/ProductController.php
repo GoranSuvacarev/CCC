@@ -113,9 +113,12 @@ class ProductController extends BaseController
 
     public function compare()
     {
+        var_dump($_POST);
+        exit;
         $model = new CompareModel();
         $model->product1 = new ProductModel();
-        $model->product1->one("where id = $_GET[id1]");
+
+        $model->product1->one("where name = $_POST[id]");
         $model->product2 = new ProductModel();
         $this->view->render('compare', 'main', $model);
     }
