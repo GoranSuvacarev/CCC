@@ -70,8 +70,8 @@ function getImagePrefix($category, $productName) {
                                 <?php foreach ($features as $feature): ?>
                                     <div class="col-12 col-md-6 col-lg-4 d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center" style="height: 250px;width: auto;margin-right: 50px;">
                                         <div class="border-light-subtle clean-product-item">
-                                            <div class="bg-primary-subtle border rounded-pill border-4 border-primary shadow image" style="border: 3px solid var(--bs-emphasis-color);font-size: 26px;height: 60px;">
-                                                <p class="d-xl-flex justify-content-xl-start align-items-xl-center" style="height: 60px;width: 275px;font-size: 22px;margin-bottom: 0px;margin-right: 0px;margin-left: 20px;">
+                                            <div class="bg-primary-subtle border rounded-pill border-4 border-primary shadow image" style="border: 3px solid var(--bs-emphasis-color);font-size: 26px;height: 80px;">
+                                                <p class="d-xl-flex justify-content-xl-start align-items-xl-center" style="height: 75px;width: 275px;font-size: 22px;margin-bottom: 0px;margin-right: 0px;margin-left: 20px;">
                                                     <?php
                                                     $formattedName = ucwords(str_replace('_', ' ', $feature['name']));
                                                     echo $formattedName . ': ' . $feature['value'] . $feature['measurement_units'];

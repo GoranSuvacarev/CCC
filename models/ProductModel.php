@@ -20,12 +20,12 @@ class ProductModel extends BaseModel
 
     public function readColumns()
     {
-        return ["id", "name", "price","image","id_category"];
+        return ["id", "manufacturer", "name", "price","image","id_category"];
     }
 
     public function editColumns()
     {
-        return ["name", "price", "image","id_category"];
+        return ["name", "manufacturer", "price", "image","id_category"];
     }
 
     public function validationRules(): array

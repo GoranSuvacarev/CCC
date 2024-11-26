@@ -6,7 +6,7 @@ use app\core\Application;
         <div style="text-align: center;">
             <div class="row">
                 <div class="col">
-                    <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="index.html" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;Processors</a></span></div>
+                    <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="/" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;Processors</a></span></div>
                 </div>
             </div>
         </div>
@@ -83,7 +83,7 @@ use app\core\Application;
                                 echo "<div class='col-12 col-md-6 col-lg-4'>
                                             <div class='border-light-subtle clean-product-item'>
                                             <div class='image'><a href='/product?id=$param[id]'><img class='img-fluid d-block mx-auto' src='assets/img/"; echo"$param[image].jpg'"; echo"style='width: 190px;margin: 0px;margin-top: 24px;height: 190px;margin-bottom: 24px;'></a></div>
-                                            <div class='product-name'><a href='/product?id=$param[id]' style='font-size: 26px;font-weight: bold;'>$param[name]</a></div>
+                                            <div class='product-name'><a href='/product?id=$param[id]' style='font-size: 26px;font-weight: bold;'>$param[manufacturer] $param[name]</a></div>
                                             <div class='about'>";
                                 if(Application::$app->session->get('user')){
                                     if($_SESSION['user'][0]['role'] == 'Admin'){

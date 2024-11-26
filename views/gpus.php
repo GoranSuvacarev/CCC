@@ -83,7 +83,7 @@ use app\core\Application;
                                 echo "<div class='col-12 col-md-6 col-lg-4'>
                                             <div class='border-light-subtle clean-product-item'>
                                             <div class='image'><a href="; echo"/product?id=$param[id]"; echo "><img class='img-fluid d-block mx-auto' src='assets/img/"; echo"$param[image].jpg'"; echo"style='width: 230px;margin: 0px;margin-top: 24px;height: 120px;margin-bottom: 24px;'></a></div>
-                                            <div class='product-name'><a href='/product?id=$param[id]' style='font-size:26px;font-weight: bold;'>$param[name]</a></div>
+                                            <div class='product-name'><a href='/product?id=$param[id]' style='font-size:26px;font-weight: bold;'>$param[manufacturer] $param[name]</a></div>
                                             <div class='about'>";
                                 if(Application::$app->session->get('user')){
                                     if($_SESSION['user'][0]['role'] == 'Admin'){
