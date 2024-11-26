@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\BaseController;
+use app\models\CompareModel;
 use app\models\FeatureModel;
 use app\models\ProductModel;
 
@@ -29,6 +30,17 @@ class ProductController extends BaseController
         $this->view->render('gpus', 'main', $results);
     }
 
+    public function gpu()
+    {
+        $model = new ProductModel();
+
+        $model->mapData($_GET);
+
+        $model->one("where id = $model->id");
+
+        $this->view->render('gpu', 'main', $model);
+    }
+
     public function cpus()
     {
         $model = new ProductModel();
@@ -36,6 +48,16 @@ class ProductController extends BaseController
         $results = $model->all("where id_category = 2");
 
         $this->view->render('cpus', 'main', $results);
+    }
+
+    public function compare()
+    {
+        $model = new CompareModel();
+        $model->product1 = new ProductModel();
+        $model->product1->one("where id = $_GET[id1]");
+        $model->product2 = new ProductModel();
+
+        $this->view->render('compare', 'main', $model);
     }
 
     public function update()

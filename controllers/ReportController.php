@@ -10,7 +10,7 @@ class ReportController extends BaseController
     public function getSuggestionsPerProduct()
     {
         $model = new ReportModel();
-        $model->mapData($_POST);
+        $model->mapData($_GET);
         $model->getSuggestionsPerProduct();
     }
 
