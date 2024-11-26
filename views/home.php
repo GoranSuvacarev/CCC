@@ -90,9 +90,9 @@ use app\models\SuggestionModel;
     });
 
     function generateSuggestionsPerProduct() {
-        $("#suggestions-per-product").empty();
-        $("#suggestions-per-product").append(
-            '<canvas id="suggestions-per-product"' +
+        $("#suggestions-per-product-canvas").empty();
+        $("#suggestions-per-product-canvas").append(
+            ' <canvas id="suggestions-per-product"' +
             'style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;"' +
             'class="chartjs-render-monitor"></canvas>'
         );
