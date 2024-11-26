@@ -26,7 +26,7 @@ $memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
                 <div style="text-align: center;margin-bottom: 20px;">
                     <div class="row">
                         <div class="col">
-                            <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="index.html" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;Category</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;<?php echo $params->name ?>&nbsp;</a></span></div>
+                            <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="/" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="/gpus" style="color: black;">&nbsp;Graphics cards </a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;<?php echo $params->name ?>&nbsp;</a></span></div>
                         </div>
                     </div>
                 </div>
