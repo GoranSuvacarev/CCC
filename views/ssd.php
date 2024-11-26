@@ -2,24 +2,24 @@
 
 use app\models\FeatureModel;
 
-$clock_speed = new FeatureModel();
-$clock_speed->one("where id_feature = 1 and id_products=$params->id");
-$turbo_speed = new FeatureModel();
-$turbo_speed->one("where id_feature = 2 and id_products=$params->id");
-$pixel_rate = new FeatureModel();
-$pixel_rate->one("where id_feature = 3 and id_products=$params->id");
-$texture_mapping_units = new FeatureModel();
-$texture_mapping_units->one("where id_feature = 4 and id_products=$params->id");
-$render_output_units = new FeatureModel();
-$render_output_units->one("where id_feature = 5 and id_products=$params->id");
-$vram_size = new FeatureModel();
-$vram_size->one("where id_feature = 6 and id_products=$params->id");
-$memory_bus_width = new FeatureModel();
-$memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
+$sequential_read_speed = new FeatureModel();
+$sequential_read_speed->one("where id_feature = 19 and id_products=$params->id");
+$random_read_speed = new FeatureModel();
+$random_read_speed->one("where id_feature = 20 and id_products=$params->id");
+$sequential_write_speed = new FeatureModel();
+$sequential_write_speed->one("where id_feature = 21 and id_products=$params->id");
+$random_write_speed = new FeatureModel();
+$random_write_speed->one("where id_feature = 22 and id_products=$params->id");
+$storage = new FeatureModel();
+$storage->one("where id_feature = 23 and id_products=$params->id");
+$pcie_version = new FeatureModel();
+$pcie_version->one("where id_feature = 24 and id_products=$params->id");
+$terabytes_written = new FeatureModel();
+$terabytes_written->one("where id_feature = 25 and id_products=$params->id");
 
 ?>
 
-<main class="page">
+    <main class="page">
     <section class="clean-block clean-product dark">
         <div class="container">
             <div class="block-heading">
@@ -86,4 +86,4 @@ $memory_bus_width->one("where id_feature = 7 and id_products=$params->id");
             </div>
         </div>
     </section>
-</main>
+    </main>
