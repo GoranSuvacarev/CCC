@@ -4,50 +4,62 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\BaseController;
+use app\core\PaginationHelper;
 use app\models\CompareModel;
 use app\models\FeatureModel;
 use app\models\ProductModel;
 
 class ProductController extends BaseController
 {
+    private function getPaginatedResults($categoryId) {
+        $model = new ProductModel();
 
+        // Get total count
+        $countResult = $model->all("where id_category = $categoryId");
+        $totalItems = count($countResult);
+
+        // Get current page from URL parameter
+        $currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+        if ($currentPage < 1) $currentPage = 1;
+
+        // Initialize pagination
+        $pagination = new PaginationHelper($totalItems, 9, $currentPage);
+        $offset = $pagination->getOffset();
+        $limit = $pagination->getLimit();
+
+        // Get paginated results
+        $results = $model->all("where id_category = $categoryId LIMIT $limit OFFSET $offset");
+
+        return [
+            'items' => $results,
+            'pagination' => $pagination
+        ];
+    }
 
     public function ssds()
     {
-        $model = new ProductModel();
-
-        $results = $model->all("where id_category = 3");
-
-        $this->view->render('ssds', 'main', $results);
+        $data = $this->getPaginatedResults(3);
+        $this->view->render('ssds', 'main', $data);
     }
 
     public function gpus()
     {
-        $model = new ProductModel();
-
-        $results = $model->all("where id_category = 1");
-
-        $this->view->render('gpus', 'main', $results);
+        $data = $this->getPaginatedResults(1);
+        $this->view->render('gpus', 'main', $data);
     }
 
     public function gpu()
     {
         $model = new ProductModel();
-
         $model->mapData($_GET);
-
         $model->one("where id = $model->id");
-
         $this->view->render('gpu', 'main', $model);
     }
 
     public function cpus()
     {
-        $model = new ProductModel();
-
-        $results = $model->all("where id_category = 2");
-
-        $this->view->render('cpus', 'main', $results);
+        $data = $this->getPaginatedResults(2);
+        $this->view->render('cpus', 'main', $data);
     }
 
     public function compare()
@@ -56,18 +68,14 @@ class ProductController extends BaseController
         $model->product1 = new ProductModel();
         $model->product1->one("where id = $_GET[id1]");
         $model->product2 = new ProductModel();
-
         $this->view->render('compare', 'main', $model);
     }
 
     public function update()
     {
         $model = new ProductModel();
-
         $model->mapData($_GET);
-
         $model->one("where id = $model->id");
-
         $this->view->render('updateProduct', 'main', $model);
     }
 
@@ -93,6 +101,7 @@ class ProductController extends BaseController
         $modelP->mapData($_GET);
         $modelF->delete("where id_products = $modelP->id ");
         $modelP->delete("where id = $modelP->id");
+
         if($modelP->id_category == 1){
             header("location:" . "/gpus");
         }
@@ -121,7 +130,6 @@ class ProductController extends BaseController
             $modelF = new FeatureModel();
             $array = [];
             $array["value"] = $feature;
-            var_dump($newID);
             $array["id_products"] = $newID;
             $array["id_feature"] = $featureCounter;
             $featureCounter++;
@@ -131,7 +139,6 @@ class ProductController extends BaseController
         }
 
         Application::$app->session->set('successNotification', 'Bravo!');
-
         header("location:" . "/gpus");
     }
 
@@ -152,7 +159,6 @@ class ProductController extends BaseController
             $modelF = new FeatureModel();
             $array = [];
             $array["value"] = $feature;
-            var_dump($newID);
             $array["id_products"] = $newID;
             $array["id_feature"] = $featureCounter;
             $featureCounter++;
@@ -162,7 +168,6 @@ class ProductController extends BaseController
         }
 
         Application::$app->session->set('successNotification', 'Bravo!');
-
         header("location:" . "/cpus");
     }
 
@@ -176,7 +181,6 @@ class ProductController extends BaseController
         $modelP->insert();
 
         $features = array_slice($_POST, 3,10);
-
         $newID = $modelP->all("ORDER BY id DESC LIMIT 1;")[0]["id"] + 0;
 
         $featureCounter = 19;
@@ -193,31 +197,23 @@ class ProductController extends BaseController
         }
 
         Application::$app->session->set('successNotification', 'Bravo!');
-
         header("location:" . "/ssds");
     }
 
     public function processDelete()
     {
         $model = new ProductModel();
-
         $model->mapData($_POST);
-
         $model->validate();
-
         $model->update("where id = $model->id");
-
         Application::$app->session->set('successNotification', 'Uspesna promena!');
-
         header("location:" . "/products");
     }
 
     public function processUpdate()
     {
         $model = new ProductModel();
-
         $model->mapData($_POST);
-
         $model->validate();
 
         if ($model->errors) {
@@ -227,9 +223,7 @@ class ProductController extends BaseController
         }
 
         $model->update("where id = $model->id");
-
         Application::$app->session->set('successNotification', 'Uspesna promena!');
-
         header("location:" . "/products");
     }
 
