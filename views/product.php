@@ -74,7 +74,7 @@ function getImagePrefix($category, $productName) {
                                                 <p class="d-xl-flex justify-content-xl-start align-items-xl-center" style="height: 60px;width: 275px;font-size: 22px;margin-bottom: 0px;margin-right: 0px;margin-left: 20px;">
                                                     <?php
                                                     $formattedName = ucwords(str_replace('_', ' ', $feature['name']));
-                                                    echo $formattedName . ': ' . $feature['value'];
+                                                    echo $formattedName . ': ' . $feature['value'] . $feature['measurement_units'];
                                                     ?>
                                                 </p>
                                             </div>
