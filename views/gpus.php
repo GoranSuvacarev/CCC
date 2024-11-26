@@ -1,7 +1,5 @@
 <?php
-
 use app\core\Application;
-
 ?>
 <section class="clean-block clean-catalog dark" style="background: var(--bs-body-bg);">
     <div class="container">
@@ -61,35 +59,10 @@ use app\core\Application;
                             </div>
                         </div>
                     </div>
-                    <div class="d-md-none"><a class="btn btn-link d-md-none filter-collapse" data-bs-toggle="collapse" aria-expanded="false" aria-controls="filters" href="#filters" role="button">Filters<i class="icon-arrow-down filter-caret"></i></a>
-                        <div class="collapse" id="filters">
-                            <div class="filters">
-                                <div class="filter-item">
-                                    <h3>Categories</h3>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Phones</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"><label class="form-check-label" for="formCheck-2">Laptops</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"><label class="form-check-label" for="formCheck-3">PC</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"><label class="form-check-label" for="formCheck-4">Tablets</label></div>
-                                </div>
-                                <div class="filter-item">
-                                    <h3>Brands</h3>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"><label class="form-check-label" for="formCheck-5">Samsung</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"><label class="form-check-label" for="formCheck-6">Apple</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7"><label class="form-check-label" for="formCheck-7">HTC</label></div>
-                                </div>
-                                <div class="filter-item">
-                                    <h3>OS</h3>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8"><label class="form-check-label" for="formCheck-8">Android</label></div>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9"><label class="form-check-label" for="formCheck-9">iOS</label></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-9">
                     <div class="products" style="border-color: var(--bs-emphasis-color);">
                         <div class="row g-0">
-
                             <?php
                             if(Application::$app->session->get('user')){
                                 if($_SESSION['user'][0]['role'] == 'Admin'){
@@ -106,18 +79,18 @@ use app\core\Application;
                                       </div>";
                                 }
                             }
-                            foreach($params as $param){
-                                    echo "<div class='col-12 col-md-6 col-lg-4'>
+                            foreach($params['items'] as $param){
+                                echo "<div class='col-12 col-md-6 col-lg-4'>
                                             <div class='border-light-subtle clean-product-item'>
                                             <div class='image'><a href="; echo"/gpu?id=$param[id]"; echo "><img class='img-fluid d-block mx-auto' src='assets/img/"; echo"$param[image].jpg'"; echo"style='width: 230px;margin: 0px;margin-top: 24px;height: 120px;margin-bottom: 24px;'></a></div>
-                                            <div class='product-name'><a href='#' style='font-size: 26px;font-weight: bold;'>$param[name]</a></div>
+                                            <div class='product-name'><a href='#' style='font-size:26px;font-weight: bold;'>$param[name]</a></div>
                                             <div class='about'>";
-                                    if(Application::$app->session->get('user')){
-                                        if($_SESSION['user'][0]['role'] == 'Admin'){
-                                            echo "<div><a href="; echo "/deleteProduct?id=$param[id]&id_category=$param[id_category]"; echo">Delete</a></div>";
-                                        }
+                                if(Application::$app->session->get('user')){
+                                    if($_SESSION['user'][0]['role'] == 'Admin'){
+                                        echo "<div><a href="; echo "/deleteProduct?id=$param[id]&id_category=$param[id_category]"; echo">Delete</a></div>";
                                     }
-                                    echo "<div class='price'>
+                                }
+                                echo "<div class='price'>
                                                     <h3>$$param[price]</h3>
                                                 </div>
                                             </div>
@@ -128,11 +101,31 @@ use app\core\Application;
                         </div>
                         <nav class="d-flex d-xl-flex d-xxl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center justify-content-xxl-center align-items-xxl-center" style="margin-top: 30px;">
                             <ul class="pagination">
-                                <li class="page-item disabled"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                <li class="page-item active"><a class="page-link">1</a></li>
-                                <li class="page-item"><a class="page-link">2</a></li>
-                                <li class="page-item"><a class="page-link">3</a></li>
-                                <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                <?php
+                                $pagination = $params['pagination'];
+                                $currentPage = $pagination->getCurrentPage();
+                                $totalPages = $pagination->getTotalPages();
+
+                                // Previous button
+                                if ($pagination->hasPreviousPage()) {
+                                    echo '<li class="page-item"><a class="page-link" href="?page='.($currentPage-1).'" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>';
+                                }
+
+                                // Page numbers
+                                foreach ($pagination->getPageNumbers() as $page) {
+                                    $activeClass = ($page == $currentPage) ? 'active' : '';
+                                    echo '<li class="page-item '.$activeClass.'"><a class="page-link" href="?page='.$page.'">'.$page.'</a></li>';
+                                }
+
+                                // Next button
+                                if ($pagination->hasNextPage()) {
+                                    echo '<li class="page-item"><a class="page-link" href="?page='.($currentPage+1).'" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+                                } else {
+                                    echo '<li class="page-item disabled"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li>';
+                                }
+                                ?>
                             </ul>
                         </nav>
                     </div>
