@@ -12,50 +12,6 @@ use app\models\ViewCounterModel;
 
 class ProductController extends BaseController
 {
-    public function addReview()
-    {
-        if (!Application::$app->session->get('user')) {
-            Application::$app->session->set('errorNotification', 'You must be logged in to submit a review!');
-            header("location:" . $_SERVER['HTTP_REFERER']);
-            exit;
-        }
-
-        if (!isset($_POST['rating']) || !isset($_POST['product_id'])) {
-            Application::$app->session->set('errorNotification', 'Invalid review submission!');
-            header("location:" . $_SERVER['HTTP_REFERER']);
-            exit;
-        }
-
-        $rating = $_POST['rating'];
-        $productId = $_POST['product_id'];
-        $userId = $_SESSION['user'][0]['id_user'];
-
-        // Create a new ProductModel instance to handle database operations
-        $model = new ProductModel();
-
-        // Check if user has already reviewed this product
-        $query = "SELECT id FROM review WHERE id_users = $userId AND id_products = $productId";
-        $result = $model->con->query($query);
-
-        if ($result && $result->num_rows > 0) {
-            // Update existing review
-            $query = "UPDATE review SET rating = $rating, review_time = CURRENT_TIMESTAMP 
-                     WHERE id_users = $userId AND id_products = $productId";
-        } else {
-            // Insert new review
-            $query = "INSERT INTO review (rating, review_time, id_users, id_products) 
-                     VALUES ($rating, CURRENT_TIMESTAMP, $userId, $productId)";
-        }
-
-        if ($model->con->query($query)) {
-            Application::$app->session->set('successNotification', 'Review submitted successfully!');
-        } else {
-            Application::$app->session->set('errorNotification', 'Error submitting review!');
-        }
-
-        header("location:" . $_SERVER['HTTP_REFERER']);
-    }
-
     public function search()
     {
         if (isset($_GET['term'])) {

@@ -86,40 +86,5 @@ function getImagePrefix($category, $productName) {
                     </div>
                 </div>
             </div>
-
-            <!-- Reviews Section -->
-            <div class="d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-center justify-content-lg-center align-items-lg-center" style="height: 400px;border-top-style: groove;border-top-color: var(--bs-emphasis-color);">
-                <div class="d-lg-flex justify-content-lg-center align-items-xxl-center" style="width: 500px;height: 300px;">
-                    <div style="width: 500px;height: 250px;margin-top: 50px;">
-                        <form method="post" action="/addReview" style="width: 500px;">
-                            <div class="d-sm-flex justify-content-sm-center">
-                                <h1 class="d-flex" style="font-size: 30px;width: 360px;">Rate the product</h1>
-                            </div>
-                            <div class="d-flex d-md-flex justify-content-lg-center align-items-lg-center div-review">
-                                <p class="d-lg-flex align-items-lg-center p-review" style="font-size: 22px; margin-right: 30px; margin-top: 20px">
-                                    <?php echo $product->name ?>
-                                </p>
-                                <div>
-                                    <select name="rating" class="form-select" style="width: 110.203px;padding: 12px 72px 12px 24px;height: 55px;margin-right: 9px;">
-                                        <optgroup label="Rating">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                        </optgroup>
-                                    </select>
-                                    <input type="hidden" name="product_id" value="<?php echo $product->id ?>">
-                                </div>
-                            </div>
-                            <div class="d-flex justify-content-center align-items-center" style="margin-top: 20px;">
-                                <button class="btn btn-primary d-flex d-xxl-flex justify-content-xxl-center align-items-xxl-center" type="submit">
-                                    Submit Review
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
     </section>
 </main>
