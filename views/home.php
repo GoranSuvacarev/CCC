@@ -27,63 +27,91 @@ use app\models\SuggestionModel;
                 echo "
         <div class='card'>
             <div class='card-body'>
-                <div class='row'>
-                    <div class='col-md-12'>
-                        <div class='row'>
+                <!-- Chart Section -->
+                <div class='row'>   
+                    <!-- Suggestions Chart -->
+                    <div class='col-md-6 mb-4'>
+                        <div class='row mb-3'>
+                            <p style='font-weight: bold'>Suggestions per product:</p>                            
                             <div class='col-md-6'>
                                 <label for='from'>From:</label>
-                                <input type='date' class='form-control date-helper-suggestions' placeholder='From' id='from'>
+                                <input type='date' class='form-control date-helper-suggestions' id='from'>
                             </div>
                             <div class='col-md-6'>
-                                <label for='from'>To:</label>
-                                <input type='date' class='form-control date-helper-suggestions' placeholder='To' id='to'>
+                                <label for='to'>To:</label>
+                                <input type='date' class='form-control date-helper-suggestions' id='to'>
                             </div>
                         </div>
                         <div class='chart'>
                             <div id='suggestions-per-product-canvas'>
-                                <canvas id='suggestions-per-product'
-                                        style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;'
-                                        class='chartjs-render-monitor'></canvas>
+                                <canvas id='suggestions-per-product' style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;'></canvas>
                             </div>
                         </div>
-                        <div class='row'>
+                    </div>
+
+                    <!-- GPU Views Chart -->
+                    <div class='col-md-6 mb-4'>
+                        <div class='row mb-3'>
+                            <p style='font-weight: bold'>Views per GPU:</p>  
                             <div class='col-md-6'>
-                                <label for='from'>From:</label>
-                                <input type='date' class='form-control date-helper-views' placeholder='From' id='fromView'>
+                                <label for='fromViewGPU'>From:</label>
+                                <input type='date' class='form-control date-helper-views-gpu' id='fromViewGPU'>
                             </div>
                             <div class='col-md-6'>
-                                <label for='from'>To:</label>
-                                <input type='date' class='form-control date-helper-views' placeholder='To' id='toView'>
+                                <label for='toViewGPU'>To:</label>
+                                <input type='date' class='form-control date-helper-views-gpu' id='toViewGPU'>
                             </div>
                         </div>
                         <div class='chart'>
                             <div id='views-per-gpu-canvas'>
-                                <canvas id='views-per-gpu'
-                                        style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;'
-                                        class='chartjs-render-monitor'></canvas>
+                                <canvas id='views-per-gpu' style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;'></canvas>
                             </div>
                         </div>
-                        <div class='chart'>    
+                    </div>
+
+                    <!-- CPU Views Chart -->
+                    <div class='col-md-6 mb-4'>
+                        <div class='row mb-3'>
+                            <p style='font-weight: bold'>Views per CPU:</p>  
+                            <div class='col-md-6'>
+                                <label for='fromViewCPU'>From:</label>
+                                <input type='date' class='form-control date-helper-views-cpu' id='fromViewCPU'>
+                            </div>
+                            <div class='col-md-6'>
+                                <label for='toViewCPU'>To:</label>
+                                <input type='date' class='form-control date-helper-views-cpu' id='toViewCPU'>
+                            </div>
+                        </div>
+                        <div class='chart'>
                             <div id='views-per-cpu-canvas'>
-                                <canvas id='views-per-cpu'
-                                        style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;'
-                                        class='chartjs-render-monitor'></canvas>
+                                <canvas id='views-per-cpu' style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;'></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SSD Views Chart -->
+                    <div class='col-md-6 mb-4'>
+                        <div class='row mb-3'>
+                            <p style='font-weight: bold'>Views per SSD:</p>  
+                            <div class='col-md-6'>
+                                <label for='fromViewSSD'>From:</label>
+                                <input type='date' class='form-control date-helper-views-ssd' id='fromViewSSD'>
+                            </div>
+                            <div class='col-md-6'>
+                                <label for='toViewSSD'>To:</label>
+                                <input type='date' class='form-control date-helper-views-ssd' id='toViewSSD'>
                             </div>
                         </div>
                         <div class='chart'>
                             <div id='views-per-ssd-canvas'>
-                                <canvas id='views-per-ssd'
-                                        style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;'
-                                        class='chartjs-render-monitor'></canvas>
+                                <canvas id='views-per-ssd' style='min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;'></canvas>
                             </div>
                         </div>
-                    </div>
-                    <div class='col-md-6'>
                     </div>
                 </div>
             </div>
         </div>
-                ";
+        ";
             }
             else{
                 echo "
@@ -96,7 +124,7 @@ use app\models\SuggestionModel;
                             <form method='post' action='/addSuggestion'><span style='font-size: 20px;margin-top: 0px;margin-bottom: 0px;padding-bottom: 0px;'>Product name</span>
                                 <input type='hidden' name='id_users' value='"; echo $_SESSION['user'][0]['id_user'] ?? 0; echo"'>
                                 <div class='mb-3'><input class='form-control' type='text' id='name' name='name' placeholder='Write the name here'></div><span style='font-size: 20px;'>Sources (Optional)</span>
-                                <div class='mb-3'><textarea class='form-control' id='source' name='source' rows='6' placeholder='Where can we find more inforamtion' style='max-height: 200px;min-height: 50px;height: 170;'></textarea></div>
+                                <div class='mb-3'><textarea class='form-control' id='source' name='source' rows='6' placeholder='Where can we find more information' style='max-height: 200px;min-height: 50px;height: 170;'></textarea></div>
                                 <div><button class='btn btn-primary d-block w-100' type='submit'>Send</button></div>
                             </form>
                         </div>
@@ -105,7 +133,6 @@ use app\models\SuggestionModel;
             </div>
         </div>" ;
             }
-
         }
         else{
             echo"
@@ -118,7 +145,7 @@ use app\models\SuggestionModel;
                             <form method='post' action='/addSuggestion'><span style='font-size: 20px;margin-top: 0px;margin-bottom: 0px;padding-bottom: 0px;'>Product name</span>
                                 <input type='hidden' name='id_users' value='"; echo $_SESSION['user'][0]['id_user'] ?? 0; echo "'>
                                 <div class='mb-3'><input class='form-control' type='text' id='name' name='name' placeholder='Write the name here'></div><span style='font-size: 20px;'>Sources (Optional)</span>
-                                <div class='mb-3'><textarea class='form-control' id='source' name='source' rows='6' placeholder='Where can we find more inforamtion' style='max-height: 200px;min-height: 50px;height: 170;'></textarea></div>
+                                <div class='mb-3'><textarea class='form-control' id='source' name='source' rows='6' placeholder='Where can we find more information' style='max-height: 200px;min-height: 50px;height: 170;'></textarea></div>
                                 <div><button class='btn btn-primary d-block w-100' type='submit'>Send</button></div>
                             </form>
                         </div>
@@ -126,7 +153,7 @@ use app\models\SuggestionModel;
                 </div>
             </div>
         </div>
-            ";
+    ";
         }
         ?>
 
@@ -139,12 +166,20 @@ use app\models\SuggestionModel;
         generateViewsPerCPU();
         generateViewsPerSSD();
 
+        // Date handlers for each chart
         $(".date-helper-suggestions").change(function () {
             generateSuggestionsPerProduct();
         });
-        $(".date-helper-views").change(function () {
+
+        $(".date-helper-views-gpu").change(function () {
             generateViewsPerGPU();
+        });
+
+        $(".date-helper-views-cpu").change(function () {
             generateViewsPerCPU();
+        });
+
+        $(".date-helper-views-ssd").change(function () {
             generateViewsPerSSD();
         });
     });
@@ -152,9 +187,7 @@ use app\models\SuggestionModel;
     function generateSuggestionsPerProduct() {
         $("#suggestions-per-product-canvas").empty();
         $("#suggestions-per-product-canvas").append(
-            ' <canvas id="suggestions-per-product"' +
-            'style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;"' +
-            'class="chartjs-render-monitor"></canvas>'
+            '<canvas id="suggestions-per-product" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>'
         );
 
         let from = $("#from").val();
@@ -180,23 +213,22 @@ use app\models\SuggestionModel;
                     }]
             }
 
-            let options = {}
-
             let graph = $("#suggestions-per-product").get(0).getContext('2d');
-
-            createGraph(setData, graph, 'pie', options);
+            createGraph(setData, graph, 'pie', {
+                responsive: true,
+                maintainAspectRatio: false
+            });
         });
     }
+
     function generateViewsPerGPU() {
         $("#views-per-gpu-canvas").empty();
         $("#views-per-gpu-canvas").append(
-            ' <canvas id="views-per-gpu"' +
-            'style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;"' +
-            'class="chartjs-render-monitor"></canvas>'
+            '<canvas id="views-per-gpu" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>'
         );
 
-        let from = $("#fromView").val();
-        let to = $("#toView").val();
+        let from = $("#fromViewGPU").val();
+        let to = $("#toViewGPU").val();
 
         let url = `/getViewsPerGPU?from=${from}&to=${to}`;
 
@@ -213,29 +245,27 @@ use app\models\SuggestionModel;
                 labels: labels,
                 datasets: [
                     {
-                        label: "Views per gpu",
+                        label: "Views per GPU",
                         data: values
                     }]
             }
 
-            let options = {}
-
             let graph = $("#views-per-gpu").get(0).getContext('2d');
-
-            createGraph(setData, graph, 'pie', options);
+            createGraph(setData, graph, 'pie', {
+                responsive: true,
+                maintainAspectRatio: false
+            });
         });
     }
 
     function generateViewsPerCPU() {
         $("#views-per-cpu-canvas").empty();
         $("#views-per-cpu-canvas").append(
-            ' <canvas id="views-per-cpu"' +
-            'style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;"' +
-            'class="chartjs-render-monitor"></canvas>'
+            '<canvas id="views-per-cpu" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>'
         );
 
-        let from = $("#fromView").val();
-        let to = $("#toView").val();
+        let from = $("#fromViewCPU").val();
+        let to = $("#toViewCPU").val();
 
         let url = `/getViewsPerCPU?from=${from}&to=${to}`;
 
@@ -252,28 +282,27 @@ use app\models\SuggestionModel;
                 labels: labels,
                 datasets: [
                     {
-                        label: "Views per cpu",
+                        label: "Views per CPU",
                         data: values
                     }]
             }
 
-            let options = {}
-
             let graph = $("#views-per-cpu").get(0).getContext('2d');
-
-            createGraph(setData, graph, 'pie', options);
+            createGraph(setData, graph, 'pie', {
+                responsive: true,
+                maintainAspectRatio: false
+            });
         });
     }
+
     function generateViewsPerSSD() {
         $("#views-per-ssd-canvas").empty();
         $("#views-per-ssd-canvas").append(
-            ' <canvas id="views-per-ssd"' +
-            'style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 634px;"' +
-            'class="chartjs-render-monitor"></canvas>'
+            '<canvas id="views-per-ssd" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>'
         );
 
-        let from = $("#fromView").val();
-        let to = $("#toView").val();
+        let from = $("#fromViewSSD").val();
+        let to = $("#toViewSSD").val();
 
         let url = `/getViewsPerSSD?from=${from}&to=${to}`;
 
@@ -290,18 +319,19 @@ use app\models\SuggestionModel;
                 labels: labels,
                 datasets: [
                     {
-                        label: "Views per ssd",
+                        label: "Views per SSD",
                         data: values
                     }]
             }
 
-            let options = {}
-
             let graph = $("#views-per-ssd").get(0).getContext('2d');
-
-            createGraph(setData, graph, 'pie', options);
+            createGraph(setData, graph, 'pie', {
+                responsive: true,
+                maintainAspectRatio: false
+            });
         });
     }
+
     function createGraph(setData, graph, chartType, options) {
         new Chart(graph, {
             type: chartType,
