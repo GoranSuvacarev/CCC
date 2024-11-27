@@ -8,6 +8,7 @@ use app\core\PaginationHelper;
 use app\models\CompareModel;
 use app\models\FeatureModel;
 use app\models\ProductModel;
+use app\models\ViewCounterModel;
 
 class ProductController extends BaseController
 {
@@ -133,7 +134,7 @@ class ProductController extends BaseController
         $model = new ProductModel();
         $model->mapData($_GET);
         $model->one("where id = $model->id");
-
+        $model->con->query("INSERT INTO views (id_products) VALUES ($model->id);");
         // Get category name
         $categoryResult = $model->con->query(
             "SELECT c.name as category_name 
