@@ -56,9 +56,9 @@ use app\core\Application;
 <footer class="text-center" style="background: #1a1a1a;height: 153px;">
     <div class="container position-relative text-white py-4 py-lg-5" style="color: var(--bs-body-bg);height: 152px;">
         <ul class="list-inline">
-            <li class="list-inline-item me-4"><a class="link-light" href="#">Web design</a></li>
-            <li class="list-inline-item me-4"><a class="link-light" href="#">Development</a></li>
-            <li class="list-inline-item"><a class="link-light" href="#">Hosting</a></li>
+            <li class="list-inline-item me-4"><a class="link-light" href="#">Comparing</a></li>
+            <li class="list-inline-item me-4"><a class="link-light" href="#">Computer</a></li>
+            <li class="list-inline-item"><a class="link-light" href="#">Components</a></li>
         </ul>
         <p class="mb-0" style="font-size: 18px;color: var(--bs-body-bg);">Copyright © 2024 CCC</p>
     </div>

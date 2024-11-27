@@ -1,9 +1,14 @@
 $(document).ready(function() {
     let selectedCategory = null;
+    let product1Selected = false;
 
     function attachSearchBehavior(inputId, suggestionListId, isSecondInput = false) {
         const input = $(`#${inputId}`);
         const suggestionList = $(`#${suggestionListId}`);
+        const compareButton = $('input[type="submit"]');
+
+        // Initially disable the compare button
+        compareButton.prop('disabled', true);
 
         // Handle both keyup and input events
         input.on('keyup input', function() {
@@ -15,6 +20,8 @@ $(document).ready(function() {
                 $('#product2').val('');
                 $('#suggestions2').empty();
                 selectedCategory = null;
+                product1Selected = false;
+                compareButton.prop('disabled', true);
                 return;
             }
 
@@ -46,9 +53,13 @@ $(document).ready(function() {
 
                         if (inputId === 'product1') {
                             selectedCategory = item.category;
+                            product1Selected = true;
                             $('#secondProductBox').removeClass('d-none');
                             $('#product2').val('');
                             $('#suggestions2').empty();
+                        } else if (inputId === 'product2') {
+                            // Only enable compare button if both products are selected
+                            compareButton.prop('disabled', false);
                         }
                     });
 
