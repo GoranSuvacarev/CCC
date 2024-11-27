@@ -10,10 +10,10 @@ use app\models\SuggestionModel;
         <div class="text-center d-flex flex-column justify-content-center align-items-center py-5 px-5 hero-content mt-0" data-bss-scroll-zoom="true" data-bss-scroll-zoom-speed="1" style="background-image: url(&quot;assets/img/Screenshot%202024-11-23%20202324.png&quot;);background-position: center;background-size: cover;">
             <h1 class="display-1" style="font-weight: bold;font-size: 46.64px;">compare computer components</h1>
             <p class="fs-3" style="font-weight: bold;">Graphics cards, processors, storage and more to come</p>
-            <form role="form" method="post" action="/compare" class="text-center" style="width: 400px;">
-                <div class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><input id="product1" class="bg-dark-subtle border rounded-pill form-control ms-0" type="search" placeholder="Type here to compare" style="width: 340px;height: 48px;padding-left: 10px;font-size: 20px;margin-right: 10px;"><input class="btn btn-primary" type="submit" value="Compare" style="margin-right: 0px;"></div>
+            <form role="form" method="get" action="/compare" class="text-center" style="width: 400px;">
+                <div class="d-flex d-xl-flex justify-content-center align-items-center justify-content-xl-center align-items-xl-center"><input name="name1" id="product1" class="bg-dark-subtle border rounded-pill form-control ms-0" type="search" placeholder="Type here to compare" style="width: 340px;height: 48px;padding-left: 10px;font-size: 20px;margin-right: 10px;"><input class="btn btn-primary" type="submit" value="Compare" style="margin-right: 0px;"></div>
                 <ul id="suggestions1" class="list-group position-absolute mt-1" style="width: 340px; z-index: 1000;"></ul>
-                <div id="secondProductBox" class="d-none mt-1"><input id="product2" class="bg-dark-subtle border rounded-pill form-control ms-0" type="search" placeholder="Type here to compare" style="width: 400px;height: 48px;padding-left: 10px;font-size: 20px;margin-right: 10px;margin-top: 4px;"></div>
+                <div id="secondProductBox" class="d-none mt-1"><input name="name2" id="product2" class="bg-dark-subtle border rounded-pill form-control ms-0" type="search" placeholder="Type here to compare" style="width: 400px;height: 48px;padding-left: 10px;font-size: 20px;margin-right: 10px;margin-top: 4px;"></div>
                 <ul id="suggestions2" class="list-group position-absolute mt-1" style="width: 340px; z-index: 1000;"></ul>
             </form>
         </div>

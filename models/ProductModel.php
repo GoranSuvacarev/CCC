@@ -9,6 +9,7 @@ class ProductModel extends BaseModel
 {
     public int $id;
     public string $name = '';
+    public string $manufacturer = '';
     public string $image = '';
     public string $price = '';
     public int $id_category;
@@ -35,4 +36,5 @@ class ProductModel extends BaseModel
             "price" => [self::RULE_REQUIRED],
         ];
     }
+
 }
