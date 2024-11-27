@@ -53,6 +53,9 @@ $app->router->post("/processLogin", [AuthController::class, 'processLogin']);
 //Reports
 $app->router->get("/myReports", [ReportController::class, 'myReports']);
 $app->router->get("/getSuggestionsPerProduct", [ReportController::class, 'getSuggestionsPerProduct']);
+$app->router->get("/getViewsPerGPU", [ReportController::class, 'getViewsPerGPU']);
+$app->router->get("/getViewsPerCPU", [ReportController::class, 'getViewsPerCPU']);
+$app->router->get("/getViewsPerSSD", [ReportController::class, 'getViewsPerSSD']);
 
 //Suggestions
 $app->router->post("/addSuggestion", [SuggestionController::class, 'addSuggestion']);
