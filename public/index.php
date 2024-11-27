@@ -39,6 +39,7 @@ $app->router->post("/processAddSSD", [ProductController::class, 'processAddSSD']
 $app->router->get("/deleteProduct", [ProductController::class, 'deleteProduct']);
 $app->router->post("/compare", [ProductController::class, 'compare']);
 $app->router->get("/search", [ProductController::class, 'search']);
+$app->router->post("/addReview", [ProductController::class, 'addReview']);
 
 
 //Auth
