@@ -21,7 +21,7 @@ use app\core\Application;
                         <div class="filters">
                             <div style="margin-bottom: 20px;">
                                 <h3><strong>Sort by:</strong></h3><select>
-                                    <option value="14" selected="">Release date</option>
+                                    <option value="14" selected="">Default</option>
                                     <option value="12">Price (low to high)</option>
                                     <option value="13">Price (high to low)</option>
                                 </select>

@@ -12,7 +12,6 @@
                             <tr>
                                 <th>Username</th>
                                 <th>Mail</th>
-                                <th>Reviews</th>
                                 <th>Edit</th>
                                 <th>Remove</th>
                             </tr>
@@ -24,7 +23,6 @@
                                         <tr>
                                         <td>$user[username]</td>
                                         <td>$user[email]</td>
-                                        <td>#Number</td>
                                         <td><a href="; echo"/updateUser?id=$user[id]"; echo">Edit</a></td>
                                         <td><a href="; echo "/deleteUser?id=$user[id]"; echo">Remove</a></td>
                                         </tr>

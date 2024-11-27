@@ -54,7 +54,7 @@ use app\core\Application;
 </nav>
 {{ RENDER_SECTION }}
 <footer class="text-center" style="background: #1a1a1a;height: 153px;">
-    <div class="container text-white py-4 py-lg-5" style="color: var(--bs-body-bg);height: 152px;">
+    <div class="container position-relative text-white py-4 py-lg-5" style="color: var(--bs-body-bg);height: 152px;">
         <ul class="list-inline">
             <li class="list-inline-item me-4"><a class="link-light" href="#">Web design</a></li>
             <li class="list-inline-item me-4"><a class="link-light" href="#">Development</a></li>
@@ -62,7 +62,6 @@ use app\core\Application;
         </ul>
         <p class="mb-0" style="font-size: 18px;color: var(--bs-body-bg);">Copyright © 2024 CCC</p>
     </div>
-
 </footer>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="assets/js/bs-init.js"></script>
