@@ -189,9 +189,6 @@ class ProductController extends BaseController
         $model->product1->one("where products.name = '$_GET[name1]'");
         $model->product2->mapData($array2);
         $model->product2->one("where products.name = '$_GET[name2]'");
-
-        var_dump($model);
-        exit;
         $this->view->render('compare', 'main', $model);
     }
 

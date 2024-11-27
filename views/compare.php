@@ -17,7 +17,7 @@ use app\models\ProductModel;
                 <div style="text-align: center;margin-bottom: 20px;">
                     <div class="row">
                         <div class="col">
-                            <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="/" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;Category</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;<?php echo "$params->product1->name vs $params->product2->name"?></a></span></div>
+                            <div class="text-start" style="font-size: 19px;"><i class="fa fa-home"></i><span><a href="/" style="color: black;">&nbsp;Home&nbsp;</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;Category</a></span><span><i class="fa fa-angle-double-right"></i></span><span><a href="#" style="color: black;">&nbsp;<?php echo $params->product1->name ?></a></span></div>
                         </div>
                     </div>
                 </div>
