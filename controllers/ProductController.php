@@ -179,23 +179,87 @@ class ProductController extends BaseController
 
     public function compare()
     {
-        echo "<pre>";
+        // Get the full product strings from the form
+        $fullString1 = trim($_GET['name1']);
+        $fullString2 = trim($_GET['name2']);
+
+        // Extract just the product names by removing the manufacturer
+        // Get the product data first
         $model = new CompareModel();
+        $model->product1 = new ProductModel();
+        $model->product2 = new ProductModel();
 
-        $product1 = new ProductModel();
-        $product2 = new ProductModel();
+        // Query to get full product data including features
+        $query = "SELECT p.*, pf.value, f.name as feature_name, f.measurement_units 
+              FROM products p 
+              LEFT JOIN products_feature pf ON p.id = pf.id_products 
+              LEFT JOIN feature f ON pf.id_feature = f.id 
+              WHERE p.name = ?";
 
-        $array1 = array ( "name" => "$_GET[name1]");
-        $array2 = array ( "name" =>"$_GET[name2]");
-        var_dump($array1);
-        $product1->mapData($array1);
-        $product2->mapData($array2);
-        var_dump($product1);
-        $product1->one("where name = $product1->name");
-        var_dump($product1);
-        exit;
-        $model->product2->mapData($array2);
-        $model->product2->one("where products.name = '$_GET[name2]'");
+        // For first product
+        $stmt1 = $model->product1->con->prepare($query);
+        if ($stmt1) {
+            // Extract just the product name from the full string
+            $nameParts1 = explode(' ', $fullString1, 2); // Split into max 2 parts
+            $productName1 = $nameParts1[1] ?? $nameParts1[0]; // Use second part if exists, otherwise use full string
+
+            $stmt1->bind_param("s", $productName1);
+            $stmt1->execute();
+            $result1 = $stmt1->get_result();
+
+            if ($row = $result1->fetch_assoc()) {
+                $model->product1->id = $row['id'];
+                $model->product1->name = $row['name'];
+                $model->product1->manufacturer = $row['manufacturer'];
+                $model->product1->price = $row['price'];
+                $model->product1->image = $row['image'];
+                $model->product1->id_category = $row['id_category'];
+
+                $model->product1->features = [];
+                do {
+                    if ($row['feature_name']) {
+                        $model->product1->features[] = [
+                            'name' => $row['feature_name'],
+                            'value' => $row['value'],
+                            'measurement_units' => $row['measurement_units']
+                        ];
+                    }
+                } while ($row = $result1->fetch_assoc());
+            }
+        }
+
+        // For second product
+        $stmt2 = $model->product2->con->prepare($query);
+        if ($stmt2) {
+            // Extract just the product name from the full string
+            $nameParts2 = explode(' ', $fullString2, 2); // Split into max 2 parts
+            $productName2 = $nameParts2[1] ?? $nameParts2[0]; // Use second part if exists, otherwise use full string
+
+            $stmt2->bind_param("s", $productName2);
+            $stmt2->execute();
+            $result2 = $stmt2->get_result();
+
+            if ($row = $result2->fetch_assoc()) {
+                $model->product2->id = $row['id'];
+                $model->product2->name = $row['name'];
+                $model->product2->manufacturer = $row['manufacturer'];
+                $model->product2->price = $row['price'];
+                $model->product2->image = $row['image'];
+                $model->product2->id_category = $row['id_category'];
+
+                $model->product2->features = [];
+                do {
+                    if ($row['feature_name']) {
+                        $model->product2->features[] = [
+                            'name' => $row['feature_name'],
+                            'value' => $row['value'],
+                            'measurement_units' => $row['measurement_units']
+                        ];
+                    }
+                } while ($row = $result2->fetch_assoc());
+            }
+        }
+
         $this->view->render('compare', 'main', $model);
     }
 

@@ -13,6 +13,7 @@ class ProductModel extends BaseModel
     public string $image = '';
     public string $price = '';
     public int $id_category;
+    public array $features = [];  // Added features array
 
     public function tableName()
     {
@@ -21,12 +22,12 @@ class ProductModel extends BaseModel
 
     public function readColumns()
     {
-        return ["id", "manufacturer", "name", "price","image","id_category"];
+        return ["id", "manufacturer", "name", "price", "image", "id_category"];
     }
 
     public function editColumns()
     {
-        return ["name", "manufacturer", "price", "image","id_category"];
+        return ["name", "manufacturer", "price", "image", "id_category"];
     }
 
     public function validationRules(): array
@@ -36,5 +37,4 @@ class ProductModel extends BaseModel
             "price" => [self::RULE_REQUIRED],
         ];
     }
-
 }
