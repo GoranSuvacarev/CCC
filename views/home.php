@@ -19,8 +19,8 @@ use app\models\SuggestionModel;
         </div>
     </div>
 </section>
-<section style="height: 680px;">
-    <section class="position-relative py-4 py-xl-5" style="height: 673.781px;">
+<section style="min-height: 680px;">
+    <section class="position-relative py-4 py-xl-5" style="min-height: 680px;">
         <?php
         if(Application::$app->session->get('user')){
             if($_SESSION['user'][0]['role'] == 'Admin'){
