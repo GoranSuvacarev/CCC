@@ -7,6 +7,9 @@ use app\models\ProductModel;
  * @var $params ProductModel
  */
 
+var_dump($params->product1);
+exit;
+
 ?>
 
 

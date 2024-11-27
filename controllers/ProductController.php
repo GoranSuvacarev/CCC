@@ -179,14 +179,21 @@ class ProductController extends BaseController
 
     public function compare()
     {
-
+        echo "<pre>";
         $model = new CompareModel();
-        $model->product1 = new ProductModel();
-        $model->product2 = new ProductModel();
-        $array1 = array ( "name" =>"$_GET[name1]");
+
+        $product1 = new ProductModel();
+        $product2 = new ProductModel();
+
+        $array1 = array ( "name" => "$_GET[name1]");
         $array2 = array ( "name" =>"$_GET[name2]");
-        $model->product1->mapData($array1);
-        $model->product1->one("where products.name = '$_GET[name1]'");
+        var_dump($array1);
+        $product1->mapData($array1);
+        $product2->mapData($array2);
+        var_dump($product1);
+        $product1->one("where name = $product1->name");
+        var_dump($product1);
+        exit;
         $model->product2->mapData($array2);
         $model->product2->one("where products.name = '$_GET[name2]'");
         $this->view->render('compare', 'main', $model);
