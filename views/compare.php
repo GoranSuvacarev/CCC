@@ -172,7 +172,7 @@ foreach ($commonFeatures as $name => $value) {
 </div>
 
 <!-- Chart Section -->
-<div class="d-xxl-flex justify-content-xxl-center align-items-xxl-center" style="height: 800px; border-top-style: groove; border-top-color: var(--bs-emphasis-color);">
+<div class="d-lg-flex justify-content-lg-center align-items-lg-center" style="height: 800px; border-top-style: groove; border-top-color: var(--bs-emphasis-color);">
     <div style="width: 90%; height: 90%; max-width: 750px; max-height: 750px; padding: 20px;">
         <canvas id="comparisionChart"></canvas>
     </div>
